@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/Dan's Scene.unity
+    guid: 987176042801405459a75e03a5dfb040
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: feb1e10d84fe80945a75442e10d8767b,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6a754ba3f0e530944a45cd4798aad11e,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: cd792bad47553a04193d799c3c7aa5ed,
+      type: 2}
