@@ -19,9 +19,9 @@ public class LevelGrid : MonoBehaviour
         else
             Destroy(gameObject);
 
-        gridSystem = new GridSystem(10, 10, 0.5f, marker);
+        gridSystem = new GridSystem(10, 10, 0.25f, marker);
         gridSystem.CreateDebugObjects(gridDebugObject);
-
+        marker.transform.position = new Vector3(0, 0, 5); //! Testing
         
     }
 

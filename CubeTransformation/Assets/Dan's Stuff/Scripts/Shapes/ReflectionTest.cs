@@ -114,13 +114,13 @@ public class ReflectionTest : MonoBehaviour
     {
         for (int i = 0; i < points.Count; i++)
         {
-            lineRenderer.SetPosition(i, points[i]);
+            lineRenderer.SetPosition(i, new Vector3(points[i].x, points[i].y, 5));
         }
 
         if (connectFinalToFirst)
         {
             lineRenderer.positionCount = points.Count + 1; // Don't know if this is needed
-            lineRenderer.SetPosition(lineRenderer.positionCount - 1, points[0]);
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(points[0].x, points[0].y, 5));
         }
 
     }
