@@ -11,6 +11,7 @@ public class ShapeManager : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
 
     [SerializeField] private List<Vector3> transposedPoints;
+    [SerializeField] private List<Vector3> testPlayerPoints;
     private void Awake() {
         transposedPoints = new List<Vector3>();
     }
@@ -31,10 +32,18 @@ public class ShapeManager : MonoBehaviour
         reflectionTest.CreateReflectionQuestion(transposedPoints);
     }
 
+    [ContextMenu("CreateReflectionQuestion")]
     public void CreateReflectionQuestion(){
         CreateShape();
         MoveShape();
         CreateReflectionTest();
+    }
+
+    [ContextMenu("SumbitPlayerReflection")]
+    public void SubmitPlayerReflection(){
+        if(reflectionTest.EvaluateReflection(testPlayerPoints, transposedPoints)){
+            Debug.Log("PLAYER HAS WON");
+        }
     }
 
     public void TestingInteractable(){

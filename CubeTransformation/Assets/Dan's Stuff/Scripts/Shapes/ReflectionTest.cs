@@ -9,14 +9,16 @@ public class ReflectionTest : MonoBehaviour
     [SerializeField] private float highestY;
     [SerializeField] private float lowestX;
     [SerializeField] private float lowestY;
+    
+    private int randomValue; // This is the reflection line value
+    private bool reflectInX; 
 
     /// <Summary>
     /// Returns two points 
     /// </Summary>
     public void CreateReflectionQuestion(List<Vector3> points){
         List<Vector3> nonTransposedPoints = new List<Vector3>();
-        float cellSize = LevelGrid.Instance.gridSystem.GetCellSize();
-        Vector3 parentPosition = LevelGrid.Instance.gridSystem.GetStartingPosition();
+
         //Convert the points coming in back into world space
         foreach(Vector3 point in points){
             Debug.Log(point);
@@ -49,9 +51,15 @@ public class ReflectionTest : MonoBehaviour
         //Debug.Log($"Maximum bound: {yUpperBound}");
         
         int randomValue = Random.Range(0, 2);
-        if(randomValue == 0) GenerateLines(GetXReflectionLine(xUpperBound, xLowerBound));
-        else
+        if(randomValue == 0){
+            reflectInX = true;
+            GenerateLines(GetXReflectionLine(xUpperBound, xLowerBound));
+        }
+        else{
+            reflectInX = false;
             GenerateLines(GetYReflectionLine(yUpperBound, yLowerBound));
+        }
+            
     }
     private void FindLengthAndHeight(){
 
@@ -77,7 +85,7 @@ public class ReflectionTest : MonoBehaviour
     private List<Vector3> GetXReflectionLine(float xUpperBound, float xLowerBound){
         int upperBound = Mathf.RoundToInt(Mathf.Floor(xUpperBound)); //! This should not need to be here if this is carried out above
         int lowerBound = Mathf.RoundToInt(Mathf.Floor(xLowerBound + 0.5f));
-        int randomValue = Random.Range(lowerBound, upperBound + 1); //! +1 is needed here because the method is exclusive
+        randomValue = Random.Range(lowerBound, upperBound + 1); //! +1 is needed here because the method is exclusive
         Debug.Log($"UpperBound: {upperBound}");
         Debug.Log($"lowerBound: {lowerBound}");
 
@@ -95,7 +103,7 @@ public class ReflectionTest : MonoBehaviour
     private List<Vector3> GetYReflectionLine(float yUpperBound, float yLowerBound){
         int upperBound = Mathf.RoundToInt(Mathf.Floor(yUpperBound)); //! This should not need to be here if this is carried out above
         int lowerBound = Mathf.RoundToInt(Mathf.Floor(yLowerBound + 0.5f));
-        int randomValue = Random.Range(lowerBound, upperBound + 1); //! +1 is needed here because the method is exclusive
+        randomValue = Random.Range(lowerBound, upperBound + 1); //! +1 is needed here because the method is exclusive
         Debug.Log($"UpperBound: {upperBound}");
         Debug.Log($"lowerBound: {lowerBound}");
 
@@ -123,5 +131,43 @@ public class ReflectionTest : MonoBehaviour
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(points[0].x, points[0].y, 5));
         }
 
+    }
+
+    public bool EvaluateReflection(List<Vector3> playerPoints, List<Vector3> shapePoints){
+        List<Vector3> nonTransposedPlayerPoints = playerPoints; //! TESTING
+        List<Vector3> nonTransposedShapePoints = new List<Vector3>();
+        int correctPointsFound = 0;
+
+        //Convert the points coming in back into world space
+        foreach(Vector3 point in playerPoints){
+            //nonTransposedPlayerPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+        }
+        foreach(Vector3 point in shapePoints){
+            nonTransposedShapePoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+        }
+
+        foreach(Vector3 playerPoint in nonTransposedPlayerPoints){
+            float distanceToReflectedShapeX = Mathf.Abs(randomValue - (playerPoint.x - randomValue));
+            float distanceToReflectedShapeY = Mathf.Abs(randomValue - (playerPoint.y - randomValue));
+            
+            foreach(Vector3 shapePoint in nonTransposedShapePoints){
+                if(reflectInX){ // Y values should be the same
+                    if(shapePoint.x == distanceToReflectedShapeX && shapePoint.y == playerPoint.y){
+                        // Found correct point
+                        correctPointsFound++;
+                        break;
+                    }
+                }
+                else{
+                    if (shapePoint.y == distanceToReflectedShapeY && shapePoint.x == playerPoint.x){
+                        // Found correct point
+                        correctPointsFound++;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return correctPointsFound == 4 ? true : false;
     }
 }
