@@ -611,7 +611,7 @@ GameObject:
   - component: {fileID: 9107360043523319343}
   - component: {fileID: 8486649205249224234}
   - component: {fileID: 7238304109199635725}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GridDebubObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 6173944305805911196}
   - component: {fileID: 5600061346457291605}
   - component: {fileID: 4222641693200950912}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
