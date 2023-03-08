@@ -7,8 +7,8 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private Transform indicator;
     [SerializeField] private Transform furtherIndicator;
-    [SerializeField] private Transform testObject;
-    [SerializeField] private Transform playerPoint;
+    [SerializeField] private Transform testObject; // This is the visual object seen on the grid
+    [SerializeField] private Transform playerPointTestPrefab;
     [SerializeField] private bool pointSelected;
 
     private Dictionary<Vector3, Transform> playerPositionGFX;
@@ -45,36 +45,32 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public void PlayerSelected(){
-        Debug.Log(testObject.position);
         pointSelected = true;
-        if(!CheckIfPointExits()){
-            Transform temp = Instantiate(playerPoint, testObject.position, Quaternion.identity);
-            playerPositionGFX.Add(testObject.position, temp); // Store the vector as the key to access it easier
+        if(!CheckIfPointExits(testObject.position)){
+            // Point does not exist so we need to create a new one
+            Transform tempPoint = Instantiate(playerPointTestPrefab, testObject.position, Quaternion.identity);
+            playerPositionGFX.Add(testObject.position, tempPoint);
         }
         else{
-            Debug.Log("A point is already in position");
+            // We want to move the point
             StartCoroutine(MovePlayerPoint(testObject.position));
         }
     }
 
-    private bool CheckIfPointExits(){
-        foreach(Vector3 position in playerPositions){
-            if(testObject.position == position) return true;
-        }
-        playerPositions.Add(testObject.position);
-        return false;
+    private bool CheckIfPointExits(Vector3 position){
+        if(playerPositionGFX.ContainsKey(position)) return true;
+        else return false;
 
     }
 
     private IEnumerator MovePlayerPoint(Vector3 position){
-    
         while(pointSelected == true){
-            playerPositionGFX[position].position = testObject.position; // This method is only called once 
+            playerPositionGFX[position].position = testObject.position; // Move the point
             yield return null;
         }
-        Transform tempGFX = playerPositionGFX[position];
-        playerPositionGFX.Remove(position);
-        playerPositionGFX.Add(testObject.position, tempGFX);
+        Transform point = playerPositionGFX[position];
+        playerPositionGFX.Remove(position); // Remove the old position as the key
+        playerPositionGFX.Add(testObject.position, point);
     }
 
     public void PlayerUnselected(){
