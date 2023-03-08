@@ -11,6 +11,9 @@ public class ShapeManager : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
 
     [SerializeField] private List<Vector3> transposedPoints;
+    
+    [SerializeField] private PlayerInteraction playerInteraction;
+
     [SerializeField] private List<Vector3> testPlayerPoints;
     private void Awake() {
         transposedPoints = new List<Vector3>();
@@ -41,7 +44,7 @@ public class ShapeManager : MonoBehaviour
 
     [ContextMenu("SumbitPlayerReflection")]
     public void SubmitPlayerReflection(){
-        if(reflectionTest.EvaluateReflection(testPlayerPoints, transposedPoints)){
+        if(reflectionTest.EvaluateReflection(playerInteraction.PlayerPositions, transposedPoints)){
             Debug.Log("PLAYER HAS WON");
         }
     }

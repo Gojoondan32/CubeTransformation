@@ -11,6 +11,7 @@ public class LevelGrid : MonoBehaviour
     [Header("Testing")]
     public GameObject testCube;
     [SerializeField] private Transform marker;
+    public Transform Marker {get {return marker;}}
 
     private void Awake()
     {

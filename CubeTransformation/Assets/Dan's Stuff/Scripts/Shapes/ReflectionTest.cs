@@ -134,13 +134,13 @@ public class ReflectionTest : MonoBehaviour
     }
 
     public bool EvaluateReflection(List<Vector3> playerPoints, List<Vector3> shapePoints){
-        List<Vector3> nonTransposedPlayerPoints = playerPoints; //! TESTING
+        List<Vector3> nonTransposedPlayerPoints = new List<Vector3>(); //! TESTING
         List<Vector3> nonTransposedShapePoints = new List<Vector3>();
         int correctPointsFound = 0;
 
         //Convert the points coming in back into world space
         foreach(Vector3 point in playerPoints){
-            //nonTransposedPlayerPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+            nonTransposedPlayerPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
         }
         foreach(Vector3 point in shapePoints){
             nonTransposedShapePoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
