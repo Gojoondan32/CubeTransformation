@@ -13,6 +13,7 @@ public class AnimationManager : MonoBehaviour
     }
 
     public void PlayMotion(){
+
         uIMotion.Play();
     }
 }

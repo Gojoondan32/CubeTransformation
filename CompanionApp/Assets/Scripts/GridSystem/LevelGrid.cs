@@ -21,10 +21,36 @@ public class LevelGrid : MonoBehaviour
             Destroy(gameObject);
 
         //CreatePath();
-        gridSystem = new GridSystem(10, 10, 0.5f, marker);
+        gridSystem = new GridSystem(10, 10, 0.9f, marker);
         gridSystem.CreateDebugObjects(gridDebugObject);
-        marker.transform.position = new Vector3(-2.2f, -5, 0); //! Testing
+        marker.transform.position = new Vector3(21f, -4f, 0); //! Testing
         
+    }
+
+    public TransformationData TestTransformData(){
+        TransformationData transformationData = new TransformationData();
+        Vector3[] shapePoints = new Vector3[4]{
+            new Vector3(1, 1, 0),
+            new Vector3(1, 3, 0),
+            new Vector3(3, 3, 0),
+            new Vector3(3, 1, 0)
+        };
+        Vector3[] playerPoints = new Vector3[4]{
+            new Vector3(5, 1, 0),
+            new Vector3(5, 3, 0),
+            new Vector3(7, 3, 0),
+            new Vector3(7, 1, 0)
+        };
+        Vector3[] reflectionPoints = new Vector3[2]{
+            new Vector3(4, 0, 0),
+            new Vector3(4, 9, 0)
+        };
+
+        transformationData.shapePoints = shapePoints;
+        transformationData.playerPoints = playerPoints;
+        transformationData.reflectionPoints = reflectionPoints;
+
+        return transformationData;
     }
 
     private void CreatePath(){

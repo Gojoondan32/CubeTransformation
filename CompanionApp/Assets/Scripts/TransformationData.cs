@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class TransformationData 
 {
-    public float score;
-    public float time;
-
-    public TransformationData(float score, float time)
-    {
-        this.score = score;
-        this.time = time;
-    }
+    // These points should be in world space when coming into this project
+    public Vector3[] shapePoints;
+    public Vector3[] playerPoints;
+    public Vector3[] reflectionPoints;
 }
