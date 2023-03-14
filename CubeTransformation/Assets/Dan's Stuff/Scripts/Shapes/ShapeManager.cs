@@ -44,7 +44,7 @@ public class ShapeManager : MonoBehaviour
 
     [ContextMenu("SumbitPlayerReflection")]
     public void SubmitPlayerReflection(){
-        if(reflectionTest.EvaluateReflection(playerInteraction.PlayerPositions, transposedPoints)){
+        if(reflectionTest.EvaluateReflection(playerInteraction.GetPlayerPoints(), transposedPoints)){
             Debug.Log("PLAYER HAS WON");
         }
     }

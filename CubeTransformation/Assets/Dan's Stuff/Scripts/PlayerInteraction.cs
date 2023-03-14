@@ -10,16 +10,17 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Transform testObject; // This is the visual object seen on the grid
     [SerializeField] private Transform playerPointTestPrefab;
     [SerializeField] private bool pointSelected;
+    [SerializeField] private LineRenderer lineRenderer;
+    private float amountOfPlayerPoints;
 
-    private Dictionary<Vector3, Transform> playerPositionGFX;
+    [SerializeField] private List<Transform> playerPoints;
 
-    private List<Vector3> playerPositions;
-    public List<Vector3> PlayerPositions { get{return playerPositions;}}
+    
 
     private void Awake() {
-        playerPositions = new List<Vector3>();
-        playerPositionGFX = new Dictionary<Vector3, Transform>();
+        playerPoints = new List<Transform>();
         pointSelected = false;
+        amountOfPlayerPoints = 0;
     }
 
     // Update is called once per frame
@@ -32,6 +33,8 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Hit Object");
             SnapToGrid(hit.point);
         }
+        if(playerPoints.Count < 2) return;
+        GenerateLines();
     }
 
     private void SnapToGrid(Vector3 hitPoint){
@@ -46,34 +49,60 @@ public class PlayerInteraction : MonoBehaviour
 
     public void PlayerSelected(){
         pointSelected = true;
-        if(!CheckIfPointExits(testObject.position)){
-            // Point does not exist so we need to create a new one
-            Transform tempPoint = Instantiate(playerPointTestPrefab, testObject.position, Quaternion.identity);
-            playerPositionGFX.Add(testObject.position, tempPoint);
+        Transform playerPoint = CheckIfPointExits(testObject);
+        if(playerPoint == null){
+            // A point does not currently exist on this point so we need to place one
+            PlacePoint(testObject.position);
         }
         else{
-            // We want to move the point
-            StartCoroutine(MovePlayerPoint(testObject.position));
+            // We have selected a point which does currently exists so we need to move it
+            StartCoroutine(MovePlayerPoint(playerPoint));
         }
     }
 
-    private bool CheckIfPointExits(Vector3 position){
-        if(playerPositionGFX.ContainsKey(position)) return true;
-        else return false;
-
+    private Transform CheckIfPointExits(Transform position){
+        foreach(Transform pos in playerPoints){
+            if(pos.position == position.position){
+                playerPoints.Remove(pos); // Remove from the list while we are looping here so we don't need another loop to remove it later
+                return pos;
+            }
+        }
+        return null;
     }
 
-    private IEnumerator MovePlayerPoint(Vector3 position){
+    private void PlacePoint(Vector3 position){
+        if(amountOfPlayerPoints >= 4) return;
+        Transform point = Instantiate(playerPointTestPrefab, position, Quaternion.identity);
+        playerPoints.Add(point);
+        amountOfPlayerPoints++;
+    }
+
+    private IEnumerator MovePlayerPoint(Transform point){
         while(pointSelected == true){
-            playerPositionGFX[position].position = testObject.position; // Move the point
+            point.position = testObject.position;
             yield return null;
         }
-        Transform point = playerPositionGFX[position];
-        playerPositionGFX.Remove(position); // Remove the old position as the key
-        playerPositionGFX.Add(testObject.position, point);
+        playerPoints.Add(point);
     }
 
     public void PlayerUnselected(){
         pointSelected = false;
+    }
+
+    public List<Vector3> GetPlayerPoints(){
+        List<Vector3> points = new List<Vector3>();
+        foreach(Transform point in playerPoints){
+            points.Add(point.position);
+        }
+        return points;
+    }
+    private void GenerateLines(){
+        for (int i = 0; i < playerPoints.Count; i++){
+            lineRenderer.SetPosition(i, new Vector3(playerPoints[i].position.x, playerPoints[i].position.y, 5));
+        }
+
+        lineRenderer.positionCount = playerPoints.Count + 1; // Don't know if this is needed
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(playerPoints[0].position.x, playerPoints[0].position.y, 5));
+        
     }
 }
