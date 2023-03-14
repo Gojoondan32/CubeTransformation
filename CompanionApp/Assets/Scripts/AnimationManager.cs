@@ -5,15 +5,36 @@ using ModularMotion;
 
 public class AnimationManager : MonoBehaviour
 {
-    [SerializeField] private UIMotion uIMotion;
+    public static AnimationManager Instance;
+    [SerializeField] private UIMotion mainScreen;
+    [SerializeField] private UIMotion loadingScreen;
+    [SerializeField] private UIMotion studentScreen;
+    private void Awake() {
+        if(Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
         
     }
+    public void StartMoving(){
+        PlayMotion();
+    }
+    private IEnumerator WaitTime(){
+        yield return new WaitForSeconds(1f);
+        PlayMotion();
+    }
 
-    public void PlayMotion(){
+    private void PlayMotion(){
 
-        uIMotion.Play();
+        mainScreen.Play();
+        loadingScreen.Play();
+        studentScreen.Play();
+    }
+    public void PlayInReverse(){
+        mainScreen.PlayAllBackward();
+        loadingScreen.PlayAllBackward();
+        studentScreen.PlayAllBackward();
     }
 }
