@@ -93,12 +93,30 @@ public class GridSystem
         return new Vector3((position.x - parentPosition.position.x) / cellSize, (position.y - parentPosition.position.y) / cellSize, 0);
     }
 
+    public List<Vector3> TransposeGridPositionListToWorldPosition(List<Vector3> positions){
+        List<Vector3> worldSpacePositions = new List<Vector3>();
+        foreach(Vector3 point in positions){
+            Vector3 worldSpacePoint = new Vector3((point.x - parentPosition.position.x) / cellSize, (point.y - parentPosition.position.y) / cellSize, 0);
+            worldSpacePositions.Add(point);
+        }
+        return worldSpacePositions;
+    }
+
     /// <Summary>
     /// Convert a point calculated in world position to the corrosponding position on the grid
     /// </Summary>
     public Vector3 TransposeWorldPositionToGridPosition(Vector3 position){
         return new Vector3((position.x * cellSize) + parentPosition.position.x, (position.y * cellSize) + parentPosition.position.y, 0);
     }
+    public List<Vector3> TransposeWorldPositionListToGridPosition(List<Vector3> positions){
+        List<Vector3> gridSpacePositions = new List<Vector3>();
+        foreach(Vector3 point in positions){
+            Vector3 gridSpacePoint = new Vector3((point.x * cellSize) + parentPosition.position.x, (point.y * cellSize) + parentPosition.position.y, 0);
+            gridSpacePositions.Add(point);
+        }
+        return gridSpacePositions;
+    }
+    
 
     public int GetWidth() => width;
     public int GetHeight() => height;

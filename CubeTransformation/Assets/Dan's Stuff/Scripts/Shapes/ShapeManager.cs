@@ -49,6 +49,22 @@ public class ShapeManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Create Translation Question")]
+    public void CreateTranslationQuestion(){
+        CreateShape();
+        MoveShape();
+        (int x, int y) = translateShape.CreateTranslationQuestion(gridSpacePoints);
+        Debug.Log(x);
+        Debug.Log(y);
+    }
+    
+    [ContextMenu("Sumbit Player Translation")]
+    public void SumbitTranslationQuestion(){
+        if(translateShape.EvalutateTranslation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
+            Debug.Log("PLAYER HAS WON WITH TRANSLATION");
+        }
+    }
+
     public void TestingInteractable(){
         Debug.Log("INTERACTABLE BUTTON IS WORKING");
     }

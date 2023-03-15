@@ -118,10 +118,11 @@ public class ReflectionTest : MonoBehaviour
     }
 
     public bool EvaluateReflection(List<Vector3> playerPoints, List<Vector3> shapePoints){
-        List<Vector3> worldSpacePlayerPoints = new List<Vector3>(); 
+        List<Vector3> worldSpacePlayerPoints = new List<Vector3>();
         List<Vector3> worldSpaceShapePoints = new List<Vector3>();
         int correctPointsFound = 0;
 
+        
         //Convert the points coming in back into world space
         foreach(Vector3 point in playerPoints){
             worldSpacePlayerPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
@@ -129,6 +130,7 @@ public class ReflectionTest : MonoBehaviour
         foreach(Vector3 point in shapePoints){
             worldSpaceShapePoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
         }
+        
 
         foreach(Vector3 playerPoint in worldSpacePlayerPoints){
             float distanceToReflectedShapeX = Mathf.Abs(randomValue - (playerPoint.x - randomValue));
