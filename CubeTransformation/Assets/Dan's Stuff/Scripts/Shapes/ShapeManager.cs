@@ -10,29 +10,29 @@ public class ShapeManager : MonoBehaviour
     [SerializeField] private ReflectionTest reflectionTest; //! Testing
     [SerializeField] private LineRenderer lineRenderer;
 
-    [SerializeField] private List<Vector3> transposedPoints;
+    [SerializeField] private List<Vector3> gridSpacePoints;
     
     [SerializeField] private PlayerInteraction playerInteraction;
 
     [SerializeField] private List<Vector3> testPlayerPoints;
     private void Awake() {
-        transposedPoints = new List<Vector3>();
+        gridSpacePoints = new List<Vector3>();
     }
 
     public void CreateShape(){
-        transposedPoints = randomisedShapes.StartDrawingShape();
-        GenerateLines(transposedPoints, true);
+        gridSpacePoints = randomisedShapes.StartDrawingShape();
+        GenerateLines(lineRenderer, gridSpacePoints, true);
     }
     public void MoveShape(){
-        transposedPoints = translateShape.RandomlyMoveShape(transposedPoints);
-        GenerateLines(transposedPoints, true);
+        gridSpacePoints = translateShape.RandomlyMoveShape(gridSpacePoints);
+        GenerateLines(lineRenderer, gridSpacePoints, true);
     }
     public void CreateReflectionTest(){
-        if(transposedPoints.Count <= 0){
+        if(gridSpacePoints.Count <= 0){
             Debug.LogError("Shape points is empty, Call CreateShape before this method");
             return;
         }
-        reflectionTest.CreateReflectionQuestion(transposedPoints);
+        reflectionTest.CreateReflectionQuestion(gridSpacePoints);
     }
 
     [ContextMenu("CreateReflectionQuestion")]
@@ -44,7 +44,7 @@ public class ShapeManager : MonoBehaviour
 
     [ContextMenu("SumbitPlayerReflection")]
     public void SubmitPlayerReflection(){
-        if(reflectionTest.EvaluateReflection(playerInteraction.GetPlayerPoints(), transposedPoints)){
+        if(reflectionTest.EvaluateReflection(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON");
         }
     }
@@ -53,14 +53,14 @@ public class ShapeManager : MonoBehaviour
         Debug.Log("INTERACTABLE BUTTON IS WORKING");
     }
 
-    private void GenerateLines(List<Vector3> points, bool connectFinalToFirst = false){
+    public static void GenerateLines(LineRenderer lineRenderer, List<Vector3> points, bool connectFinalToFirst = false){
         for (int i = 0; i < points.Count; i++){
-            lineRenderer.SetPosition(i, new Vector3(points[i].x, points[i].y, 5));
+            lineRenderer.SetPosition(i, new Vector3(points[i].x, points[i].y, LevelGrid.Instance.Marker.position.z - 0.01f));
         }
 
         if(connectFinalToFirst){
             lineRenderer.positionCount = points.Count + 1; // Don't know if this is needed
-            lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(points[0].x, points[0].y, 5));
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(points[0].x, points[0].y, LevelGrid.Instance.Marker.position.z - 0.01f));
         }
         
     }

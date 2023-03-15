@@ -5,26 +5,33 @@ using UnityEngine;
 public class TranslateShape : MonoBehaviour
 {
     private List<Vector3> translatedPoints;
-    [SerializeField] private Transform testCube;
+
+
+
+
     private void Awake(){
         translatedPoints = new List<Vector3>();
     }
 
-
+    /// <Summary>
+    /// Returns a list of Vector3s in grid position
+    /// </Summary>
     public List<Vector3> RandomlyMoveShape(List<Vector3> points){
         translatedPoints.Clear(); // Prevent argument out of range exception
 
         foreach(Vector3 point in points){
             translatedPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
         }
+        int x = 0;
+        int y = 0;
 
-        int x = Random.Range(-LevelGrid.Instance.gridSystem.GetWidth() - 1, LevelGrid.Instance.gridSystem.GetWidth());
-        int y = Random.Range(-LevelGrid.Instance.gridSystem.GetHeight() - 1, LevelGrid.Instance.gridSystem.GetHeight());
-        while(!TryMoveShape(translatedPoints, x, y)){
+        do{
             x = Random.Range(-LevelGrid.Instance.gridSystem.GetWidth() - 1, LevelGrid.Instance.gridSystem.GetWidth());
             y = Random.Range(-LevelGrid.Instance.gridSystem.GetHeight() - 1, LevelGrid.Instance.gridSystem.GetHeight());
         }
+        while(!TryMoveShape(translatedPoints, x, y));
 
+        // Convert points found into grid position
         for (int i = 0; i < translatedPoints.Count; i++){
             Vector3 tempPoint = new Vector3(translatedPoints[i].x + x, translatedPoints[i].y + y, 0);
             points[i] = LevelGrid.Instance.gridSystem.TransposeWorldPositionToGridPosition(tempPoint);

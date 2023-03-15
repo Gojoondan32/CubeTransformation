@@ -12,10 +12,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private bool pointSelected;
     [SerializeField] private LineRenderer lineRenderer;
     private float amountOfPlayerPoints;
-
-    [SerializeField] private List<Transform> playerPoints;
-
-    
+    private List<Transform> playerPoints;
 
     private void Awake() {
         playerPoints = new List<Transform>();
@@ -34,7 +31,7 @@ public class PlayerInteraction : MonoBehaviour
             SnapToGrid(hit.point);
         }
         if(playerPoints.Count < 2) return;
-        GenerateLines();
+        GenerateLines(); // Called every frame so that the line updates while the player is moving a point
     }
 
     private void SnapToGrid(Vector3 hitPoint){
@@ -63,7 +60,6 @@ public class PlayerInteraction : MonoBehaviour
     private Transform CheckIfPointExits(Transform position){
         foreach(Transform pos in playerPoints){
             if(pos.position == position.position){
-                playerPoints.Remove(pos); // Remove from the list while we are looping here so we don't need another loop to remove it later
                 return pos;
             }
         }
@@ -82,7 +78,6 @@ public class PlayerInteraction : MonoBehaviour
             point.position = testObject.position;
             yield return null;
         }
-        playerPoints.Add(point);
     }
 
     public void PlayerUnselected(){
@@ -96,13 +91,15 @@ public class PlayerInteraction : MonoBehaviour
         }
         return points;
     }
+
+    // Cannot use the generate line method on the shape manager as this class holds a list of transforms instead of Vector3
     private void GenerateLines(){
         for (int i = 0; i < playerPoints.Count; i++){
-            lineRenderer.SetPosition(i, new Vector3(playerPoints[i].position.x, playerPoints[i].position.y, 5));
+            lineRenderer.SetPosition(i, new Vector3(playerPoints[i].position.x, playerPoints[i].position.y, LevelGrid.Instance.Marker.position.z - 0.01f));
         }
 
         lineRenderer.positionCount = playerPoints.Count + 1; // Don't know if this is needed
-        lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(playerPoints[0].position.x, playerPoints[0].position.y, 5));
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(playerPoints[0].position.x, playerPoints[0].position.y, LevelGrid.Instance.Marker.position.z - 0.01f));
         
     }
 }

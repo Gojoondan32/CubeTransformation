@@ -53,11 +53,11 @@ public class ReflectionTest : MonoBehaviour
         int randomValue = Random.Range(0, 2);
         if(randomValue == 0){
             reflectInX = true;
-            GenerateLines(GetXReflectionLine(xUpperBound, xLowerBound));
+            ShapeManager.GenerateLines(lineRenderer, GetXReflectionLine(xUpperBound, xLowerBound));
         }
         else{
             reflectInX = false;
-            GenerateLines(GetYReflectionLine(yUpperBound, yLowerBound));
+            ShapeManager.GenerateLines(lineRenderer, GetYReflectionLine(yUpperBound, yLowerBound));
         }
             
     }
@@ -117,40 +117,24 @@ public class ReflectionTest : MonoBehaviour
         
     }
 
-    //! Testing - this is alreayd on the shape manager
-    private void GenerateLines(List<Vector3> points, bool connectFinalToFirst = false)
-    {
-        for (int i = 0; i < points.Count; i++)
-        {
-            lineRenderer.SetPosition(i, new Vector3(points[i].x, points[i].y, 5));
-        }
-
-        if (connectFinalToFirst)
-        {
-            lineRenderer.positionCount = points.Count + 1; // Don't know if this is needed
-            lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(points[0].x, points[0].y, 5));
-        }
-
-    }
-
     public bool EvaluateReflection(List<Vector3> playerPoints, List<Vector3> shapePoints){
-        List<Vector3> nonTransposedPlayerPoints = new List<Vector3>(); //! TESTING
-        List<Vector3> nonTransposedShapePoints = new List<Vector3>();
+        List<Vector3> worldSpacePlayerPoints = new List<Vector3>(); 
+        List<Vector3> worldSpaceShapePoints = new List<Vector3>();
         int correctPointsFound = 0;
 
         //Convert the points coming in back into world space
         foreach(Vector3 point in playerPoints){
-            nonTransposedPlayerPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+            worldSpacePlayerPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
         }
         foreach(Vector3 point in shapePoints){
-            nonTransposedShapePoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+            worldSpaceShapePoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
         }
 
-        foreach(Vector3 playerPoint in nonTransposedPlayerPoints){
+        foreach(Vector3 playerPoint in worldSpacePlayerPoints){
             float distanceToReflectedShapeX = Mathf.Abs(randomValue - (playerPoint.x - randomValue));
             float distanceToReflectedShapeY = Mathf.Abs(randomValue - (playerPoint.y - randomValue));
             
-            foreach(Vector3 shapePoint in nonTransposedShapePoints){
+            foreach(Vector3 shapePoint in worldSpaceShapePoints){
                 if(reflectInX){ // Y values should be the same
                     if(shapePoint.x == distanceToReflectedShapeX && shapePoint.y == playerPoint.y){
                         // Found correct point

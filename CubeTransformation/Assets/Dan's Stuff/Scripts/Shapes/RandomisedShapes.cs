@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 public class RandomisedShapes : MonoBehaviour
 {
-    //[SerializeField] private Transform[] pointMarkers;
     private List<Vector3> chosenPoints;
     private List<Vector3> points;
     [SerializeField] private float totalAngles;
@@ -12,10 +11,6 @@ public class RandomisedShapes : MonoBehaviour
         chosenPoints = new List<Vector3>();
         points = new List<Vector3>();
     }
-    private void Start() {
-
-    }
-
     public List<Vector3> StartDrawingShape(){
         totalAngles = 0;
         while(totalAngles != 360){
@@ -26,8 +21,6 @@ public class RandomisedShapes : MonoBehaviour
         return points;
     }
 
-
-    //Pick a random point
     private void PickRandomPoints(){
         chosenPoints.Clear();
         points.Clear();
@@ -38,7 +31,6 @@ public class RandomisedShapes : MonoBehaviour
             //Needs to be 0 + starting position 
             int x = Random.Range(0, LevelGrid.Instance.gridSystem.GetWidth() - 7); //! Magic number - change later
             int y = Random.Range(0, LevelGrid.Instance.gridSystem.GetHeight() - 7);
-            //Vector3 pointPosition = new Vector3((x * cellSize) + parentPosition.x, (y * cellSize) + parentPosition.y, 0);
             Vector3 pointPosition = new Vector3(x, y, 0);
 
             while(chosenPoints.Contains(pointPosition)){
@@ -46,13 +38,8 @@ public class RandomisedShapes : MonoBehaviour
                 pointPosition.y = Random.Range(0, LevelGrid.Instance.gridSystem.GetHeight() - 7);
             }
             
-            //! Destroy these
             chosenPoints.Add(pointPosition);
-            //pointMarkers[i].position = pointPosition;
-            //points.Add(pointMarkers[i].position); //! Use for testing purposes
-
             points.Add(LevelGrid.Instance.gridSystem.TransposeWorldPositionToGridPosition(pointPosition));
-            //points.Add(new Vector3((pointPosition.x * cellSize) + parentPosition.x, (pointPosition.y * cellSize) + parentPosition.y));
         }
 
         //! This is pretty bad
