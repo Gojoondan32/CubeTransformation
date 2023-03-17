@@ -156,4 +156,13 @@ public class ReflectionTest : MonoBehaviour
 
         return correctPointsFound == 4 ? true : false;
     }
+
+
+    public void RemoveReflectionLines(){
+        List<Vector3> points = new List<Vector3>() {
+            new Vector3(0, 0, 0),
+            new Vector3(0, 0, 0)
+        };
+        ShapeManager.GenerateLines(lineRenderer, points);
+    }
 }
