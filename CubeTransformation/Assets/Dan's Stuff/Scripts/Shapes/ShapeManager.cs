@@ -51,6 +51,7 @@ public class ShapeManager : MonoBehaviour
 
     [ContextMenu("Create Translation Question")]
     public void CreateTranslationQuestion(){
+        reflectionTest.RemoveReflectionLines();
         CreateShape();
         MoveShape();
         (int x, int y) = translateShape.CreateTranslationQuestion(gridSpacePoints);
