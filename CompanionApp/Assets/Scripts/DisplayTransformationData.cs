@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class DisplayTransformationData : MonoBehaviour
 {
+    [SerializeField] private Camera targetCamera;
+
     [SerializeField] private LineRenderer shapeLineRenderer;
     [SerializeField] private LineRenderer playerLineRenderer;
     [SerializeField] private LineRenderer reflectionLineRenderer;
@@ -23,6 +26,8 @@ public class DisplayTransformationData : MonoBehaviour
         GenerateLines(reflectionPoints, reflectionLineRenderer, false);  
 
         //ConvertRenderTextureToTexture2D(); 
+        TestingNewRender();
+        TestingNewRender();
         //ConvertRenderTextureToTexture2D(); //! Second one is for testing purposes
         
         //GenerateShapeLines(shapePoints);
@@ -48,7 +53,35 @@ public class DisplayTransformationData : MonoBehaviour
         if(connectFirstToLast) lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(points[0].x, points[0].y, 0));
     }
 
+
+    private void TestingNewRender(){
+        RenderTexture renderTexture = RenderTexture.active;
+        RenderTexture.active = targetCamera.targetTexture;
+        targetCamera.Render();
+
+        Texture2D texture = new Texture2D(targetCamera.targetTexture.width, targetCamera.targetTexture.height);
+        texture.ReadPixels(new Rect(0, 0, targetCamera.targetTexture.width, targetCamera.targetTexture.height), 0, 0);
+        texture.Apply();
+        RenderTexture.active = renderTexture;
+
+        gridImages[currentGrid].texture = texture;
+
+        currentGrid++;
+
+    }
+
+    
     private void ConvertRenderTextureToTexture2D(){
+        Texture2D outputTexture = new Texture2D(targetCamera.targetTexture.width, targetCamera.targetTexture.height, TextureFormat.RGB24, false);
+        RenderTexture currentRT = RenderTexture.active;
+        RenderTexture.active = targetCamera.targetTexture;
+        outputTexture.ReadPixels(new Rect(0, 0, targetCamera.targetTexture.width, targetCamera.targetTexture.height), 0, 0);
+        outputTexture.Apply();
+        RenderTexture.active = currentRT;
+
+        gridImages[currentGrid].texture = outputTexture;
+        currentGrid++;
+        /*
         Texture2D texture = new Texture2D(1022, 1022, TextureFormat.RGB24, false);
         RenderTexture.active = renderTexture;
         texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
@@ -56,7 +89,30 @@ public class DisplayTransformationData : MonoBehaviour
 
         gridImages[currentGrid].texture = texture;
         currentGrid++;
+        */
     }
+
+    /*
+    private void TestTexture(){
+        RenderTexture renderTexture = new RenderTexture(targetCamera.targetTexture.width, targetCamera.targetTexture.height, 24);
+        Texture2D outputTexture = new Texture2D(targetCamera.targetTexture.width, targetCamera.targetTexture.height, TextureFormat.RGB24, false);
+        
+        RenderTexture.active = renderTexture;
+        targetCamera.targetTexture = renderTexture;
+        targetCamera.Render();
+
+    }
+
+    private void RenderLineRenderer(LineRenderer lineRenderer, RenderTexture renderTexture){
+        RenderTexture tempRenderTexture = RenderTexture.GetTemporary(targetCamera.targetTexture.width, targetCamera.targetTexture.height, 0);
+        Graphics.Blit(renderTexture, tempRenderTexture);
+        RenderTexture.active = tempRenderTexture;
+
+        GL.PushMatrix();
+        GL.LoadPixelMatrix(0, targetCamera.targetTexture.width, targetCamera.targetTexture.height, 0);
+        
+    }
+    */
 
     #region Old Stuff
     private void GenerateShapeLines(List<Vector3> points){
