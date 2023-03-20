@@ -19,8 +19,9 @@ public class SerialisationHandler : MonoBehaviour
         }
     }
     public void StartDataDownload(){
+        displayTransformationData.PassInTransformationData(LevelGrid.Instance.TestTransformData());
         AnimationManager.Instance.StartMoving();
-        StartCoroutine(GetDataRequest("https://getpantry.cloud/apiv1/pantry/fa8f4194-314d-4ece-8d08-8fe8f5592358/basket/StudentScore1"));
+        //StartCoroutine(GetDataRequest("https://getpantry.cloud/apiv1/pantry/fa8f4194-314d-4ece-8d08-8fe8f5592358/basket/StudentScore1"));
     }
 
     // Download the data 
@@ -43,7 +44,7 @@ public class SerialisationHandler : MonoBehaviour
             //Debug.Log(transformationData.score);
             //Debug.Log(transformationData.time);
             displayTransformationData.PassInTransformationData(transformationData);
-            AnimationManager.Instance.StartMoving();
+            AnimationManager.Instance.PlayLoadToStudent();
         }
     }
 

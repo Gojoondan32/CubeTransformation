@@ -19,16 +19,26 @@ public class AnimationManager : MonoBehaviour
         
     }
     public void StartMoving(){
-        PlayMotion();
+        //PlayMainToLoad();;
+        PlayMainToLoad();
     }
     private IEnumerator WaitTime(){
         yield return new WaitForSeconds(1f);
-        PlayMotion();
+        PlayLoadToStudent();
     }
 
     private void PlayMotion(){
 
         mainScreen.Play();
+        loadingScreen.Play();
+        
+    }
+    private void PlayMainToLoad(){
+        mainScreen.Play();
+        loadingScreen.Play();
+        StartCoroutine(WaitTime());
+    }
+    public void PlayLoadToStudent(){
         loadingScreen.Play();
         studentScreen.Play();
     }
@@ -36,5 +46,12 @@ public class AnimationManager : MonoBehaviour
         mainScreen.PlayAllBackward();
         loadingScreen.PlayAllBackward();
         studentScreen.PlayAllBackward();
+    }
+
+    public void ResetScreens(){
+        mainScreen.Play();
+        studentScreen.ResetMotion();
+        loadingScreen.Play();
+        loadingScreen.ResetMotion();
     }
 }

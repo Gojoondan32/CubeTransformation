@@ -12,27 +12,60 @@ public class DisplayTransformationData : MonoBehaviour
     [SerializeField] private LineRenderer playerLineRenderer;
     [SerializeField] private LineRenderer reflectionLineRenderer;
     [SerializeField] private RenderTexture renderTexture;
+    [SerializeField] private GameObject gridImagePrefab;
+    [SerializeField] private Transform translationScrollableList;
+    [SerializeField] private Transform reflectionScrollableList;
+    [SerializeField] private Transform rotationScrollableList;
     [SerializeField] private RawImage[] gridImages;
     private int currentGrid;
 
     public void PassInTransformationData(TransformationData transformationData){
-        // Convert each point to grid space
-        List<Vector3> shapePoints = ConvertPointsToGridSpace(transformationData.shapePoints);
-        List<Vector3> playerPoints = ConvertPointsToGridSpace(transformationData.playerPoints);
-        List<Vector3> reflectionPoints = ConvertPointsToGridSpace(transformationData.reflectionPoints);
 
-        GenerateLines(shapePoints, shapeLineRenderer, true);
-        GenerateLines(playerPoints, playerLineRenderer, true);
-        GenerateLines(reflectionPoints, reflectionLineRenderer, false);  
+        // Create translation, reflection, and rotation data
+        DisplayTranslationData(transformationData.translationData);
+        //DisplayReflectionData(transformationData.reflectionData);
+        DisplayRotationData(transformationData.rotationData);
+
 
         //ConvertRenderTextureToTexture2D(); 
-        TestingNewRender();
-        TestingNewRender();
+        //TestingNewRender();
+        //TestingNewRender();
         //ConvertRenderTextureToTexture2D(); //! Second one is for testing purposes
         
         //GenerateShapeLines(shapePoints);
         //GeneratePlayerLines(playerPoints);
         //GenerateReflectionLines(reflectionPoints);
+    }
+    private void DisplayTranslationData(TranslationData[] translationData){
+        for (int i = 0; i < translationData.Length; i++){
+            DisplayShapeAndPlayerPoints(translationData[i].shapePoints, translationData[i].playerPoints);
+
+            CreateGridImage(translationScrollableList);
+        }
+    }
+    private void DisplayReflectionData(ReflectionData[] reflectionData){
+        for (int i = 0; i < reflectionData.Length; i++){
+            DisplayShapeAndPlayerPoints(reflectionData[i].shapePoints, reflectionData[i].playerPoints);
+            List<Vector3> reflectionPoints = ConvertPointsToGridSpace(reflectionData[i].reflectionPoints);
+            GenerateLines(reflectionPoints, reflectionLineRenderer, false);
+
+            CreateGridImage(reflectionScrollableList);
+        }
+    }
+    private void DisplayRotationData(RotationData[] rotationData){
+        for (int i = 0; i < rotationData.Length; i++){
+            DisplayShapeAndPlayerPoints(rotationData[i].shapePoints, rotationData[i].playerPoints);
+
+            CreateGridImage(rotationScrollableList);
+        }
+    }
+
+    private void DisplayShapeAndPlayerPoints(Vector3[] shapePoints, Vector3[] playerPoints){
+        List<Vector3> shapePointsList = ConvertPointsToGridSpace(shapePoints);
+        List<Vector3> playerPointsList = ConvertPointsToGridSpace(playerPoints);
+
+        GenerateLines(shapePointsList, shapeLineRenderer, true);
+        GenerateLines(playerPointsList, playerLineRenderer, true);
     }
 
     private List<Vector3> ConvertPointsToGridSpace(Vector3[] points){
@@ -54,7 +87,7 @@ public class DisplayTransformationData : MonoBehaviour
     }
 
 
-    private void TestingNewRender(){
+    private Texture2D TestingNewRender(){
         RenderTexture renderTexture = RenderTexture.active;
         RenderTexture.active = targetCamera.targetTexture;
         targetCamera.Render();
@@ -64,10 +97,15 @@ public class DisplayTransformationData : MonoBehaviour
         texture.Apply();
         RenderTexture.active = renderTexture;
 
-        gridImages[currentGrid].texture = texture;
+        return texture;
+        //gridImages[currentGrid].texture = texture;
+        //currentGrid++;
 
-        currentGrid++;
+    }
 
+    private void CreateGridImage(Transform parent){
+        GameObject temp = Instantiate(gridImagePrefab, new Vector3(0, 0, 0), Quaternion.identity, parent);
+        temp.GetComponentInChildren<RawImage>().texture = TestingNewRender();
     }
 
     
