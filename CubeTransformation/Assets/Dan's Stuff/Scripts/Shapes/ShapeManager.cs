@@ -66,6 +66,11 @@ public class ShapeManager : MonoBehaviour
         }
     }
 
+    public void CreateRotationQuestion(){
+        CreateShape();
+        MoveShape();
+    }
+
     public void TestingInteractable(){
         Debug.Log("INTERACTABLE BUTTON IS WORKING");
     }
