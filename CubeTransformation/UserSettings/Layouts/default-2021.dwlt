@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Scene
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 49
+  controlID: 16
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 298
     height: 695
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 50
+  controlID: 17
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 51
+  controlID: 18
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -348,22 +348,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Conrad's Stuff/PathWayTesting
+    - Assets/Conrad's Stuff/PathWayTesting/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Conrad's Stuff/PathWayTesting
+  - Assets/Conrad's Stuff/PathWayTesting/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\c2001\Documents\GitHub\Tachyon\CubeTransformation\CubeTransformation
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 10830000
-    m_LastClickedID: 33552
-    m_ExpandedIDs: 00000000c0820000c8820000108300001c8300003805010000ca9a3bffffff7f
+    m_SelectedIDs: a4830000
+    m_LastClickedID: 33700
+    m_ExpandedIDs: 000000002a8300003c8300008283000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -391,7 +391,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c0820000
+    m_ExpandedIDs: 000000002a830000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -521,25 +521,25 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 14830000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 9420f8fffe21f8ff4a25f8ff4e26f8ff5627f8ff7828f8ffae29f8ff3031f8ff2c32f8ffa833f8ff0c35f8fff637f8ffc43af8ffc03bf8ff1c3df8ff7c41f8ffea71f8ffe672f8ffde75f8ff947cf8ff0c86f8ff0e89f8ff8c90f8ff7496f8ff16a8f8ff3ca9f8ff6aaaf8ffceabf8ffc2b1f8ff2a00f9ff38b5fdff60dffdfff060feff0665feff8a9bfeff40e2ffff20e3ffff2afbfffff4ffffffd68c0000dc8c0000fa8c0000ded00000f2d00000a6d600002adb0000e6dd00005adf00006edf000088df00003ee0000062e900005aeb000034ee000052f1000016f20000def400008cf50000080b0100
+      m_ExpandedIDs: 82d7ffff12daffff2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Portal
-        m_OriginalName: Portal
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 53470
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 4}
+        m_ClientGUIView: {fileID: 11}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -773,9 +773,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2.7882535, y: -2.9080844, z: 3.179498}
+    m_Target: {x: 14.478614, y: 18.4461, z: -47.613842}
     speed: 2
-    m_Value: {x: 2.7882535, y: -2.9080844, z: 3.179498}
+    m_Value: {x: 14.478614, y: 18.4461, z: -47.613842}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -822,13 +822,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.25289446, y: 0.087777674, z: -0.024388464, w: 0.96348506}
+    m_Target: {x: 0.048825055, y: -0.2247189, z: 0.00990037, w: 0.9734423}
     speed: 2
-    m_Value: {x: 0.25278696, y: 0.08919788, z: -0.02476086, w: 0.9630832}
+    m_Value: {x: 0.055964947, y: -0.23623098, z: 0.012256523, w: 0.97000647}
   m_Size:
     m_Target: 9.380447
     speed: 2
-    m_Value: 8.976504
+    m_Value: 9.380447
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -915,7 +915,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
