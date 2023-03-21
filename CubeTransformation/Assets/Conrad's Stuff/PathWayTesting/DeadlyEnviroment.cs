@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class DeadlyEnviroment : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject[] Rubble;
+    [SerializeField]
+    private Transform [] RubbleOrigins;
+    private Material [] RubbleDimensions;
 
-    // Update is called once per frame
-    void Update()
+    
+    public void Collapse(int Varient, int Dimension,int Room)
     {
-        
+        Vector3 Randnum = new Vector3(0,0,0);
+        GameObject RubbleObj = Instantiate(Rubble[Varient], RubbleOrigins[Dimension * Room].transform.position + Randnum, Quaternion.identity);
+        RubbleObj.GetComponent<Renderer>().material = RubbleDimensions[Dimension];
     }
 }
