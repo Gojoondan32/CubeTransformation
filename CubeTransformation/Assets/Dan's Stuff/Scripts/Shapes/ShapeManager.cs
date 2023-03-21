@@ -8,6 +8,7 @@ public class ShapeManager : MonoBehaviour
     [SerializeField] private RandomisedShapes randomisedShapes;
     [SerializeField] private TranslateShape translateShape;
     [SerializeField] private ReflectionTest reflectionTest; //! Testing
+    [SerializeField] private RotateShape rotateShape;
     [SerializeField] private LineRenderer lineRenderer;
 
     [SerializeField] private List<Vector3> gridSpacePoints;
@@ -66,9 +67,11 @@ public class ShapeManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Create Rotation Question")]
     public void CreateRotationQuestion(){
         CreateShape();
         MoveShape();
+        rotateShape.CreateRotationQuestion(gridSpacePoints);
     }
 
     public void TestingInteractable(){
