@@ -2,26 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CountDown : MonoBehaviour
 {
-    [SerializeField] private int Path;
-    [SerializeField] private int Stage;
+    [SerializeField] private int ThisChamber;
     [SerializeField] private TextMeshProUGUI CountDowntxt;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Player Located");
-            int SearchCode = (Path + 1) * (Stage + 1);
-            if (LevelTimer.LevelTimers[SearchCode] != 0)
-            {
-                LevelTimer.LevelTimers[SearchCode] -= Time.deltaTime;
-                CountDowntxt.text = LevelTimer.LevelTimers[SearchCode].ToString();
-                Debug.Log("TickTock");
-            }
+            CurrentPosition.CurrentChamber = ThisChamber;
         }
     }
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            CurrentPosition.CurrentChamber = 0;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            LevelTimer.LevelTimersTra[ThisChamber] -= Time.deltaTime;
+            CountDowntxt.text = LevelTimer.LevelTimersTra[ThisChamber].ToString();
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            LevelTimer.LevelTimersRot[ThisChamber] -= Time.deltaTime;
+            CountDowntxt.text = LevelTimer.LevelTimersRot[ThisChamber].ToString();
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            LevelTimer.LevelTimersRef[ThisChamber] -= Time.deltaTime;
+            CountDowntxt.text = LevelTimer.LevelTimersRef[ThisChamber].ToString();
+        }
+        
+    }
+
 }

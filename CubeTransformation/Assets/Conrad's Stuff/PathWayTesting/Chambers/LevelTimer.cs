@@ -2,21 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelTimer : MonoBehaviour
+public class LevelTimer
 {
-    public static float[] LevelTimers = new float[10];
-    public static bool[] ChambersComplete = new bool[3];
-    public static int Failures;
-    private void Awake()
-    {
-        for(int i = 0; i < LevelTimers.Length; i++)
-        {
-            LevelTimers[i] = 200f;
-        }
-        for(int i = 0; i < ChambersComplete.Length; i++)
-        {
-            ChambersComplete[i] = false;
-        }
-        Failures = 0;
-    }
+    public static float[] LevelTimersRef = new float[3];
+    public static float[] LevelTimersTra = new float[3];
+    public static float[] LevelTimersRot = new float[3];
+    public static bool[] ChambersComplete = new bool[3] {false,false,false};
+    public static int Failures = 0;
 }

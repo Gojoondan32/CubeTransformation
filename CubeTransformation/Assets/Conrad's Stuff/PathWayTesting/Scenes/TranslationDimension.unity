@@ -1918,8 +1918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b021f6994953494a9287d6ea57a99df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: 0
-  Stage: 2
+  ThisChamber: 0
   CountDowntxt: {fileID: 277797109}
 --- !u!4 &438255280
 Transform:
@@ -3876,6 +3875,50 @@ RectTransform:
   m_AnchoredPosition: {x: 99.99997, y: -180}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1127519340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127519342}
+  - component: {fileID: 1127519341}
+  m_Layer: 0
+  m_Name: GameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1127519341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127519340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de28c2a6cea59db438c7f15ec9bf1056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1127519342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127519340}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 41
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1176448708
 GameObject:
   m_ObjectHideFlags: 0
@@ -4632,8 +4675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b021f6994953494a9287d6ea57a99df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: 0
-  Stage: 1
+  ThisChamber: 0
   CountDowntxt: {fileID: 249264119}
 --- !u!4 &1328453321
 Transform:
@@ -5833,8 +5875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b021f6994953494a9287d6ea57a99df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path: 0
-  Stage: 0
+  ThisChamber: 0
   CountDowntxt: {fileID: 1828448374}
 --- !u!4 &1658046265
 Transform:
