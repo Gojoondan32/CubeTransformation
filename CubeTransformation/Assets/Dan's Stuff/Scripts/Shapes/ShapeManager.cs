@@ -71,7 +71,8 @@ public class ShapeManager : MonoBehaviour
     public void CreateRotationQuestion(){
         CreateShape();
         MoveShape();
-        rotateShape.CreateRotationQuestion(gridSpacePoints);
+        Vector2 rotationPoint = rotateShape.CreateRotationQuestion(gridSpacePoints);
+        Debug.Log($"x: {rotationPoint.x} y: {rotationPoint.y}");
     }
 
     public void TestingInteractable(){

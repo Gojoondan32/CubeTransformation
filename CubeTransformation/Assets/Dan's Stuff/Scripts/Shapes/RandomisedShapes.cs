@@ -22,6 +22,7 @@ public class RandomisedShapes : MonoBehaviour
     }
 
     private void PickRandomPoints(){
+        Random.InitState(System.DateTime.Now.Millisecond); // Ensure randomness
         chosenPoints.Clear();
         points.Clear();
         float cellSize = LevelGrid.Instance.gridSystem.GetCellSize(); 
