@@ -102,6 +102,7 @@ public class ReflectionTest : MonoBehaviour
 
     //Create a list which stores all the valid reflection lines and then picks one at random
     private List<Vector3> GetYReflectionLine(float yUpperBound, float yLowerBound){
+        Random.InitState(System.DateTime.Now.Millisecond); // Ensure randomness
         int upperBound = Mathf.RoundToInt(Mathf.Floor(yUpperBound)); //! This should not need to be here if this is carried out above
         int lowerBound = Mathf.RoundToInt(Mathf.Floor(yLowerBound + 0.5f));
         randomValue = Random.Range(lowerBound, upperBound + 1); //! +1 is needed here because the method is exclusive
@@ -154,7 +155,8 @@ public class ReflectionTest : MonoBehaviour
                 }
             }
         }
-
+        
+        Debug.Log("Correct points: " + correctPointsFound);
         return correctPointsFound == 4 ? true : false;
     }
 

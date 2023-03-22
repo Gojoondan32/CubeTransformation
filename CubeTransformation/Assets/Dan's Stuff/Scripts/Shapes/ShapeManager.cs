@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShapeManager : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private TextMeshProUGUI textXandY; 
     [SerializeField] private RandomisedShapes randomisedShapes;
     [SerializeField] private TranslateShape translateShape;
     [SerializeField] private ReflectionTest reflectionTest; //! Testing
@@ -12,21 +14,31 @@ public class ShapeManager : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
 
     [SerializeField] private List<Vector3> gridSpacePoints;
+    private List<Transform> gridSpaceVisuals;
+    [SerializeField] private Transform gridSpacePointVisualPrefab;
     
     [SerializeField] private PlayerInteraction playerInteraction;
 
     [SerializeField] private List<Vector3> testPlayerPoints;
     private void Awake() {
         gridSpacePoints = new List<Vector3>();
+        gridSpaceVisuals = new List<Transform>();
+
+        for(int i = 0; i < 4; i++){
+            Transform temp = Instantiate(gridSpacePointVisualPrefab, new Vector3(0, -100f, 0), Quaternion.identity);
+            gridSpaceVisuals.Add(temp);
+        }
     }
 
     public void CreateShape(){
         gridSpacePoints = randomisedShapes.StartDrawingShape();
         GenerateLines(lineRenderer, gridSpacePoints, true);
+        MoveVisuals();
     }
     public void MoveShape(){
         gridSpacePoints = translateShape.RandomlyMoveShape(gridSpacePoints);
         GenerateLines(lineRenderer, gridSpacePoints, true);
+        MoveVisuals();
     }
     public void CreateReflectionTest(){
         if(gridSpacePoints.Count <= 0){
@@ -56,8 +68,7 @@ public class ShapeManager : MonoBehaviour
         CreateShape();
         MoveShape();
         (int x, int y) = translateShape.CreateTranslationQuestion(gridSpacePoints);
-        Debug.Log(x);
-        Debug.Log(y);
+        textXandY.text = $"X: {x}, Y: {y}";
     }
     
     [ContextMenu("Sumbit Player Translation")]
@@ -72,7 +83,7 @@ public class ShapeManager : MonoBehaviour
         CreateShape();
         MoveShape();
         Vector2 rotationPoint = rotateShape.CreateRotationQuestion(gridSpacePoints);
-        Debug.Log($"x: {rotationPoint.x} y: {rotationPoint.y}");
+        textXandY.text = $"x: {rotationPoint.x} y: {rotationPoint.y}";
     }
 
     public void TestingInteractable(){
@@ -89,5 +100,12 @@ public class ShapeManager : MonoBehaviour
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, new Vector3(points[0].x, points[0].y, LevelGrid.Instance.Marker.position.z - 0.01f));
         }
         
+    }
+    public void MoveVisuals(){
+        for(int i = 0; i < gridSpaceVisuals.Count; i++){
+            Vector3 pos = gridSpacePoints[i];
+            pos.z = LevelGrid.Instance.Marker.position.z;
+            gridSpaceVisuals[i].position = pos;
+        }
     }
 }
