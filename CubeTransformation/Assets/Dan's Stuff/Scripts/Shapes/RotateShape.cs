@@ -9,6 +9,8 @@ public class RotateShape : MonoBehaviour
     private Dictionary<string, Vector3> directions;
     private bool arePointsOnTheGrid;
     private int rotationAmount;
+    private Vector2 rotationPoint;
+
     private int searchRadiusX;
 
     private void Awake() {
@@ -24,7 +26,7 @@ public class RotateShape : MonoBehaviour
         directions.Add("southwest", new Vector3 (-1, -1, 0));
     }
     
-    public Vector2 CreateRotationQuestion(List<Vector3> points){
+    public (Vector2 rotationPoint, int rotationAmount) CreateRotationQuestion(List<Vector3> points){
         arePointsOnTheGrid = false;
         rotationAmount = 0;
         // Convert grid space points to world space
@@ -45,10 +47,10 @@ public class RotateShape : MonoBehaviour
     }
     // Create me a method which takes a list of points and finds all the points around them in a radius of 2
 
-    private Vector2 FindRotation(List<Vector3> points){
+    private (Vector2 rotationPoint, int rotationAmount) FindRotation(List<Vector3> points){
         List<Vector3> rotatedPoints = points;
         List<Vector2> pointsAround = FindAllPointsAround(points);
-        Vector2 rotationPoint = new Vector2();
+        rotationPoint = new Vector2();
         while(arePointsOnTheGrid == false){
             Random.InitState(System.DateTime.Now.Millisecond); // Ensure randomness
             int randomValue = Random.Range(0, pointsAround.Count);
@@ -69,7 +71,7 @@ public class RotateShape : MonoBehaviour
         }
         Debug.Log(rotationAmount);
 
-        return rotationPoint;
+        return (rotationPoint, rotationAmount / 90);
     }
 
     private List<Vector2> FindAllPointsAround(List<Vector3> points){
@@ -84,6 +86,35 @@ public class RotateShape : MonoBehaviour
             }
         }
         return pointsAround;
+    }
+
+    public bool EvaluateRotation(List<Vector3> playerPoints, List<Vector3> shapePoints){
+        List<Vector3> worldSpacePlayerPoints = new List<Vector3>();
+        List<Vector3> worldSpaceShapePoints = new List<Vector3>();
+        int correctPointsFound = 0;
+        //Convert the points coming in back into world space
+        foreach(Vector3 point in playerPoints){
+            worldSpacePlayerPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+        }
+        foreach(Vector3 point in shapePoints){
+            worldSpaceShapePoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+        }
+        
+        List<Vector3> rotatedPoints = worldSpaceShapePoints;
+        for(int i = 0; i < rotationAmount; i++){
+            rotatedPoints = DoRotation(rotatedPoints, rotationPoint);
+        }
+
+        for(int i = 0; i < rotatedPoints.Count; i++){
+            for(int j = 0; j < worldSpacePlayerPoints.Count; j++){
+                if(rotatedPoints[i] == worldSpacePlayerPoints[j]){
+                    correctPointsFound++;
+                }
+            }
+        }
+
+        return correctPointsFound == 4 ? true : false;
+
     }
 
 

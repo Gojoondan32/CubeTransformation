@@ -82,8 +82,15 @@ public class ShapeManager : MonoBehaviour
     public void CreateRotationQuestion(){
         CreateShape();
         MoveShape();
-        Vector2 rotationPoint = rotateShape.CreateRotationQuestion(gridSpacePoints);
-        textXandY.text = $"x: {rotationPoint.x} y: {rotationPoint.y}";
+        (Vector2 rotationPoint, int rotationAmount) = rotateShape.CreateRotationQuestion(gridSpacePoints);
+        textXandY.text = $"x: {rotationPoint.x} y: {rotationPoint.y} rotation: {rotationAmount * 90}";
+
+    }
+    [ContextMenu("Sumbit Player Rotation")]
+    public void SumbitRotationQuestion(){
+        if(rotateShape.EvaluateRotation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
+            Debug.Log("PLAYER HAS WON WITH ROTATION");
+        }
     }
 
     public void TestingInteractable(){
