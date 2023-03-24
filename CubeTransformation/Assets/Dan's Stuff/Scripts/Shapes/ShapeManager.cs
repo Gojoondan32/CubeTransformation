@@ -83,7 +83,7 @@ public class ShapeManager : MonoBehaviour
         CreateShape();
         MoveShape();
         (Vector2 rotationPoint, int rotationAmount) = rotateShape.CreateRotationQuestion(gridSpacePoints);
-        textXandY.text = $"x: {rotationPoint.x} y: {rotationPoint.y} rotation: {rotationAmount * 90}";
+        textXandY.text = $"x: {rotationPoint.x} y: {rotationPoint.y} rotation: {rotationAmount}";
 
     }
     [ContextMenu("Sumbit Player Rotation")]
