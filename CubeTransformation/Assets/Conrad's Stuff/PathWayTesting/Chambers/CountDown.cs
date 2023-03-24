@@ -18,10 +18,7 @@ public class CountDown : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            CurrentPosition.CurrentChamber = 0;
-        }
+        
     }
 
     private void OnTriggerStay(Collider other)

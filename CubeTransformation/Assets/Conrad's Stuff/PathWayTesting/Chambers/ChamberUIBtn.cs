@@ -16,6 +16,7 @@ public class ChamberUIBtn : MonoBehaviour
         {
             Debug.Log(CurrentPosition.CurrentChamber);
             StartCoroutine(chamberCartMovement.Transition(Destinations[CurrentPosition.CurrentChamber + 1]));
+            CurrentPosition.CurrentChamber += 1;
         } 
     }
 
