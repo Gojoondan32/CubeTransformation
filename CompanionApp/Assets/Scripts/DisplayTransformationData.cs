@@ -18,12 +18,18 @@ public class DisplayTransformationData : MonoBehaviour
     [SerializeField] private Transform rotationScrollableList;
     [SerializeField] private RawImage[] gridImages;
     private int currentGrid;
+    private TransformationData transformationData;
+    private List<GameObject> gridImageObjects = new List<GameObject>();
 
     public void PassInTransformationData(TransformationData transformationData){
+        // Remove old grid images
+        for (int i = 0; i < gridImageObjects.Count; i++){
+                Destroy(gridImageObjects[i].gameObject);
+            }
 
         // Create translation, reflection, and rotation data
         DisplayTranslationData(transformationData.translationData);
-        //DisplayReflectionData(transformationData.reflectionData);
+        DisplayReflectionData(transformationData.reflectionData);
         DisplayRotationData(transformationData.rotationData);
 
 
@@ -51,6 +57,7 @@ public class DisplayTransformationData : MonoBehaviour
 
             CreateGridImage(reflectionScrollableList);
         }
+        GenerateLines(new List<Vector3>() {new Vector3(0, 0, 0), new Vector3(0, 0, 0)}, reflectionLineRenderer, false);
     }
     private void DisplayRotationData(RotationData[] rotationData){
         for (int i = 0; i < rotationData.Length; i++){
@@ -106,6 +113,7 @@ public class DisplayTransformationData : MonoBehaviour
     private void CreateGridImage(Transform parent){
         GameObject temp = Instantiate(gridImagePrefab, new Vector3(0, 0, 0), Quaternion.identity, parent);
         temp.GetComponentInChildren<RawImage>().texture = TestingNewRender();
+        gridImageObjects.Add(temp);
     }
 
     

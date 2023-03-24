@@ -12,6 +12,7 @@ public class SerialisationHandler : MonoBehaviour
     {
         // This should be in the main program
         //StartCoroutine(TrialSetDataRequest("https://getpantry.cloud/apiv1/pantry/fa8f4194-314d-4ece-8d08-8fe8f5592358/basket/StudentScore1"));
+        //StartCoroutine(GetDataRequest("https://getpantry.cloud/apiv1/pantry/fa8f4194-314d-4ece-8d08-8fe8f5592358/basket/StudentScore1"));
     }
     private void Update() {
         if(Input.GetMouseButtonDown(0)){
@@ -19,7 +20,9 @@ public class SerialisationHandler : MonoBehaviour
         }
     }
     public void StartDataDownload(){
+        Debug.Log("StartDataDownload");
         displayTransformationData.PassInTransformationData(LevelGrid.Instance.TestTransformData());
+        AnimationManager.Instance.MoveFromTo(1);
         AnimationManager.Instance.StartMoving();
         //StartCoroutine(GetDataRequest("https://getpantry.cloud/apiv1/pantry/fa8f4194-314d-4ece-8d08-8fe8f5592358/basket/StudentScore1"));
     }
@@ -28,6 +31,7 @@ public class SerialisationHandler : MonoBehaviour
     private IEnumerator GetDataRequest(string url){
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url)){
             webRequest.SetRequestHeader("Content-Type", "application/json");
+            Debug.Log("Getting data");
             yield return webRequest.SendWebRequest();
 
             string[] pages = url.Split('/');
@@ -40,11 +44,12 @@ public class SerialisationHandler : MonoBehaviour
 
             string textToParse = webRequest.downloadHandler.text;
             TransformationData transformationData = JsonUtility.FromJson<TransformationData>(textToParse);
-
+            Debug.Log("Got data");
+            Debug.Log(transformationData.translationData[0].shapePoints[0]);
             //Debug.Log(transformationData.score);
             //Debug.Log(transformationData.time);
             displayTransformationData.PassInTransformationData(transformationData);
-            AnimationManager.Instance.PlayLoadToStudent();
+            AnimationManager.Instance.MoveFromTo(2);
         }
     }
 
