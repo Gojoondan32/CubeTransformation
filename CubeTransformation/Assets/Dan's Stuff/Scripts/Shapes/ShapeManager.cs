@@ -80,6 +80,7 @@ public class ShapeManager : MonoBehaviour
 
     [ContextMenu("Create Rotation Question")]
     public void CreateRotationQuestion(){
+        reflectionTest.RemoveReflectionLines(); // Testing
         CreateShape();
         MoveShape();
         (Vector2 rotationPoint, int rotationAmount) = rotateShape.CreateRotationQuestion(gridSpacePoints);

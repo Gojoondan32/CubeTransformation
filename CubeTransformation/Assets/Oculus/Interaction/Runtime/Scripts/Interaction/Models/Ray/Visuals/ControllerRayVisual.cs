@@ -166,10 +166,10 @@ namespace Oculus.Interaction
             _renderer.enabled = true;
             transform.SetPositionAndRotation(_rayInteractor.Origin, _rayInteractor.Rotation);
 
-            //transform.localScale = new Vector3(
-                //transform.localScale.x,
-                //transform.localScale.y,
-                //Mathf.Min(_maxRayVisualLength, (_rayInteractor.End - transform.position).magnitude));
+            transform.localScale = new Vector3(
+                transform.localScale.x,
+                transform.localScale.y,
+                Mathf.Min(_maxRayVisualLength, (_rayInteractor.End - transform.position).magnitude));
 
             _materialPropertyBlockEditor.MaterialPropertyBlock.SetColor(_shaderColor0, _rayInteractor.State == InteractorState.Select ? _selectColor0 : _hoverColor0);
             _materialPropertyBlockEditor.MaterialPropertyBlock.SetColor(_shaderColor1, _rayInteractor.State == InteractorState.Select ? _selectColor1 : _hoverColor1);

@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Oculus.Interaction;
+using UnityEngine.XR;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private Transform indicator;
-    [SerializeField] private Transform furtherIndicator;
+    private InputDevice rightTargetDevice; // The right controller
+    [SerializeField] private Transform playerHandRight; // This is the hand that is used to select a point on the grid
+    [SerializeField] private RayInteractor rayInteractor; // This is the ray that is used to select a point on the grid
+
+    [SerializeField] private PlayerSumbit playerSumbit; // This is the script that is used to submit the player's answer
+
     [SerializeField] private Transform testObject; // This is the visual object seen on the grid
     [SerializeField] private Transform playerPointTestPrefab;
     [SerializeField] private bool pointSelected;
@@ -20,13 +25,43 @@ public class PlayerInteraction : MonoBehaviour
         amountOfPlayerPoints = 0;
     }
 
+    private void Start() {
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDeviceCharacteristics rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
+        InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
+
+        foreach (var item in devices)
+        {
+            Debug.Log(item.name + item.characteristics);
+        }
+
+        if(devices.Count > 0)
+        {
+            rightTargetDevice = devices[0]; // This should be the right controller
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = furtherIndicator.position - indicator.position;
-        Debug.DrawRay(furtherIndicator.position, dir, Color.blue, 1f);
-        //Fire a raycast to the indicator
-        if(Physics.Raycast(transform.position, dir, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("GridObject"))){
+        if(rightTargetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && triggerValue > 0.1f)
+        {
+            // This should be used to select a point on the grid and move it
+            Debug.Log("Pressing Trigger Button");
+            PlayerSelected();
+        }
+        else PlayerUnselected(); // This should be used to deselect a point on the grid   
+        if(rightTargetDevice.TryGetFeatureValue(CommonUsages.gripButton, out bool gripButtonValue) && gripButtonValue)
+        {
+            // This should be used to try and sumbit the player's answer
+            Debug.Log("Pressing the grip button Button");
+            playerSumbit.SubmitAnswer();
+
+        }
+
+        Vector3 dir = rayInteractor.End - playerHandRight.position;
+        Debug.DrawRay(playerHandRight.position, dir, Color.blue, 1f);
+        if(Physics.Raycast(playerHandRight.position, dir, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("GridObject"))){
             Debug.Log("Hit Object");
             SnapToGrid(hit.point);
         }
