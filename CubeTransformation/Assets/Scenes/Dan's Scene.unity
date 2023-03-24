@@ -2482,7 +2482,7 @@ PrefabInstance:
     - target: {fileID: 6669781830073804112, guid: 4f13f8ac0bc568d4c90919a3dccfcc61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6669781830073804126, guid: 4f13f8ac0bc568d4c90919a3dccfcc61,
         type: 3}
@@ -2577,7 +2577,7 @@ PrefabInstance:
     - target: {fileID: 6669781830651828253, guid: 4f13f8ac0bc568d4c90919a3dccfcc61,
         type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: 
+      value: SumbitRotationQuestion
       objectReference: {fileID: 0}
     - target: {fileID: 6669781830651828253, guid: 4f13f8ac0bc568d4c90919a3dccfcc61,
         type: 3}

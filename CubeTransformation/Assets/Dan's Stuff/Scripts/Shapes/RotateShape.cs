@@ -24,6 +24,15 @@ public class RotateShape : MonoBehaviour
         directions.Add("northwest", new Vector3 (-1, 1, 0));
         directions.Add("southeast", new Vector3 (1, -1, 0));
         directions.Add("southwest", new Vector3 (-1, -1, 0));
+
+        directions.Add("north2", new Vector3 (0, 2, 0));
+        directions.Add("south2", new Vector3 (0, -2, 0));
+        directions.Add("east2", new Vector3 (2, 0, 0));
+        directions.Add("west2", new Vector3 (-2, 0, 0));
+        directions.Add("northeast2", new Vector3 (2, 2, 0));
+        directions.Add("northwest2", new Vector3 (-2, 2, 0));
+        directions.Add("southeast2", new Vector3 (2, -2, 0));
+        directions.Add("southwest2", new Vector3 (-2, -2, 0));
     }
     
     public (Vector2 rotationPoint, int rotationAmount) CreateRotationQuestion(List<Vector3> points){
@@ -58,26 +67,27 @@ public class RotateShape : MonoBehaviour
             rotationAmount = 0;
 
             for(int i = 0; i < 3; i++){
-                rotationAmount += 90;
+                rotationAmount++;
                 rotatedPoints = DoRotation(rotatedPoints, rotationPoint);
                 if(ArePointsOnTheGrid(rotatedPoints) == true) break;
             }   
         }
 
+        
         for (int i = 0; i < rotatedPoints.Count; i++){
             Vector3 pos = LevelGrid.Instance.gridSystem.TransposeWorldPositionToGridPosition(rotatedPoints[i]);
             pos.z = LevelGrid.Instance.Marker.position.z;
             Destroy(Instantiate(testobject, pos, Quaternion.identity), 60f);
         }
         Debug.Log(rotationAmount);
-
-        return (rotationPoint, rotationAmount / 90);
+        
+        return (rotationPoint, rotationAmount * 90);
     }
 
     private List<Vector2> FindAllPointsAround(List<Vector3> points){
         List<Vector2> pointsAround = new List<Vector2>();
         foreach(Vector3 point in points){
-            for(int i = 0; i < 8; i++){
+            for(int i = 0; i < 16; i++){
                 Vector2 pointAround = new Vector2(point.x + directions[directions.Keys.ElementAt(i)].x, point.y + directions[directions.Keys.ElementAt(i)].y);
                 if(!pointsAround.Contains(pointAround) && IsPointOnTheGrid(pointAround)){
                     pointsAround.Add(pointAround);
@@ -86,6 +96,13 @@ public class RotateShape : MonoBehaviour
             }
         }
         return pointsAround;
+    }
+    private void TestAllPointsAround(List<Vector2> points){
+        foreach(Vector2 point in points){
+            Vector3 pos = LevelGrid.Instance.gridSystem.TransposeWorldPositionToGridPosition(point);
+            pos.z = LevelGrid.Instance.Marker.position.z;
+            Instantiate(testobject, pos, Quaternion.identity);
+        }
     }
 
     public bool EvaluateRotation(List<Vector3> playerPoints, List<Vector3> shapePoints){
@@ -112,7 +129,7 @@ public class RotateShape : MonoBehaviour
                 }
             }
         }
-
+        Debug.Log(correctPointsFound);
         return correctPointsFound == 4 ? true : false;
 
     }
