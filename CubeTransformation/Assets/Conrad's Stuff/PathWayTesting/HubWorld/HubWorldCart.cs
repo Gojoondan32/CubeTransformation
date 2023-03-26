@@ -52,19 +52,19 @@ public class HubWorldCart : MonoBehaviour
                 float z = (y + 180) % 360;
                 gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, z, 0));
                 yield return null;
-                Debug.Log("Turning");
-                Debug.Log(FinishRotation.y);
-                Debug.Log((gameObject.transform.rotation.eulerAngles.y + 180) % 360);
-                Debug.Log((gameObject.transform.rotation.eulerAngles.y + 180) % 360 != FinishRotation.y);
+                //Debug.Log("Turning");
+                //Debug.Log(FinishRotation.y);
+                //Debug.Log((gameObject.transform.rotation.eulerAngles.y + 180) % 360);
+                //Debug.Log((gameObject.transform.rotation.eulerAngles.y + 180) % 360 != FinishRotation.y);
             }
-            Debug.Log("Turn Complete");
+            //Debug.Log("Turn Complete");
             // Phase 2 Coupling
 
             chosenPath = RailofChoice;
             KartProgress = 0.01f;
             transform.position = pathCreators[chosenPath].path.GetPointAtDistance(KartProgress, endOfPathInstruction);
             transform.rotation = pathCreators[chosenPath].path.GetRotationAtDistance(KartProgress, endOfPathInstruction);
-            Debug.Log("RailofChoice Selected");
+            //Debug.Log("RailofChoice Selected");
 
             yield return new WaitForSeconds(1f);
 
@@ -79,7 +79,7 @@ public class HubWorldCart : MonoBehaviour
         else
         {
             chosenPath = -1;
-            Debug.Log("Non Valid Path");
+            //Debug.Log("Non Valid Path");
         }
         InMovement = false;
     }
@@ -95,7 +95,7 @@ public class HubWorldCart : MonoBehaviour
 
     public void AllAboard(float StartValue, float EndValue)
     {
-        Debug.Log("All Aboard!");
+        //Debug.Log("All Aboard!");
         StartCoroutine(Trainsition(StartValue, EndValue));
         
 
