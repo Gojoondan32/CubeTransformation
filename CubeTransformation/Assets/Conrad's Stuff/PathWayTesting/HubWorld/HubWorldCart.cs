@@ -13,6 +13,7 @@ public class HubWorldCart : MonoBehaviour
     public AnimationCurve curve;
     private float x;
     [SerializeField] WorldTransition worldTransition;
+    [SerializeField] private Animator animator;
 
     public void GoToRot()
     {
@@ -20,6 +21,7 @@ public class HubWorldCart : MonoBehaviour
         Vector3 FinRot = new Vector3(gameObject.transform.rotation.eulerAngles.y, (pathCreators[1].gameObject.transform.rotation.eulerAngles.y), 1);
         //Go To Rotation Dimension
         StartCoroutine(MineCartMove(StartRot, FinRot, 1));
+        animator.SetBool("IsMoving", true);
     }
     public void GoToTra()
     {
@@ -27,6 +29,7 @@ public class HubWorldCart : MonoBehaviour
         Vector3 FinRot = new Vector3(gameObject.transform.rotation.eulerAngles.y, (pathCreators[0].gameObject.transform.rotation.eulerAngles.y), 0);
         //Go To Translation Dimension
         StartCoroutine(MineCartMove(StartRot, FinRot, 0));
+        animator.SetBool("IsMoving", true);
     }
     public void GoToRef()
     {
@@ -34,6 +37,7 @@ public class HubWorldCart : MonoBehaviour
         Vector3 FinRot = new Vector3(gameObject.transform.rotation.eulerAngles.y, (pathCreators[2].gameObject.transform.rotation.eulerAngles.y), 2);
         //Go To Reflection Dimension
         StartCoroutine(MineCartMove(StartRot, FinRot, 2));
+        animator.SetBool("IsMoving", true);
 
     }
 
@@ -82,6 +86,7 @@ public class HubWorldCart : MonoBehaviour
             //Debug.Log("Non Valid Path");
         }
         InMovement = false;
+        animator.SetBool("IsMoving", false);
     }
 
     private void FixedUpdate()
@@ -91,6 +96,7 @@ public class HubWorldCart : MonoBehaviour
             transform.position = pathCreators[chosenPath].path.GetPointAtDistance(KartProgress, endOfPathInstruction);
             transform.rotation = pathCreators[chosenPath].path.GetRotationAtDistance(KartProgress, endOfPathInstruction);
         }
+        
     }
 
     public void AllAboard(float StartValue, float EndValue)

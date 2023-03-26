@@ -7,7 +7,7 @@ using TMPro;
 public class WorldTransition : MonoBehaviour
 {
     [SerializeField]private GameObject LoadingScreen;
-    [SerializeField] private TextMeshProUGUI LoadingBarFill;
+    //[SerializeField] private TextMeshProUGUI LoadingBarFill;
 
     private void Awake()
     {
@@ -25,8 +25,8 @@ public class WorldTransition : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
         while (!operation.isDone)
         {
-            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
-            LoadingBarFill.text = progressValue.ToString() + "%";
+            //float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+            //LoadingBarFill.text = progressValue.ToString() + "%";
             yield return null;
         }
     }
