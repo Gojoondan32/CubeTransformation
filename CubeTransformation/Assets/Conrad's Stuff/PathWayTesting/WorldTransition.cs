@@ -11,6 +11,7 @@ public class WorldTransition : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(LoadingScreen);
         LoadingScreen.SetActive(false);
     }
 
