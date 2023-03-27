@@ -176,7 +176,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 90
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -596,6 +596,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365133284}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &504245640 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1722476778, guid: 9a361766db17d1748a185c88d0b4f530,
+    type: 3}
+  m_PrefabInstance: {fileID: 7600349311312811650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &529880868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2423,6 +2429,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1722476773, guid: 9a361766db17d1748a185c88d0b4f530, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 504245640}
     - target: {fileID: 1722476773, guid: 9a361766db17d1748a185c88d0b4f530, type: 3}
       propertyPath: pathCreators.Array.data[0]
       value: 
