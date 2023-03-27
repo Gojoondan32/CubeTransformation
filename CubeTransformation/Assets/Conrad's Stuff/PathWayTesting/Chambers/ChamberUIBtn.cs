@@ -12,6 +12,7 @@ public class ChamberUIBtn : MonoBehaviour
 
     public void BtnPress()
     {
+        Debug.Log(chamberCartMovement);
         if (CurrentPosition.CurrentChamber < 3)
         {
             Debug.Log(CurrentPosition.CurrentChamber);

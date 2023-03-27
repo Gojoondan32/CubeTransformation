@@ -58,13 +58,8 @@ public class PlayerInteraction : MonoBehaviour
             playerSumbit.SubmitAnswer();
 
         }
-
-        Vector3 dir = rayInteractor.End - playerHandRight.position;
-        Debug.DrawRay(playerHandRight.position, dir, Color.blue, 1f);
-        if(Physics.Raycast(playerHandRight.position, dir, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("GridObject"))){
-            Debug.Log("Hit Object");
-            SnapToGrid(hit.point);
-        }
+        DoRaycast();
+        
         if(playerPoints.Count < 2) return;
         GenerateLines(); // Called every frame so that the line updates while the player is moving a point
     }
@@ -80,6 +75,8 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public void PlayerSelected(){
+        if(DoRaycast() == false) return; // Stop the player from placing a point if they are not looking at the grid
+
         pointSelected = true;
         Transform playerPoint = CheckIfPointExits(testObject);
         if(playerPoint == null){
@@ -125,6 +122,17 @@ public class PlayerInteraction : MonoBehaviour
             points.Add(point.position);
         }
         return points;
+    }
+
+    private bool DoRaycast(){
+        Vector3 dir = rayInteractor.End - playerHandRight.position;
+        Debug.DrawRay(playerHandRight.position, dir, Color.blue, 1f);
+        if(Physics.Raycast(playerHandRight.position, dir, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("GridObject"))){
+            Debug.Log("Hit Object");
+            SnapToGrid(hit.point);
+            return true;
+        }
+        return false; // Stop the player from placing a point if they are not looking at the grid
     }
 
     // Cannot use the generate line method on the shape manager as this class holds a list of transforms instead of Vector3
