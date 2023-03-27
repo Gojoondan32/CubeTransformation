@@ -59,6 +59,7 @@ public class ShapeManager : MonoBehaviour
     public void SubmitPlayerReflection(){
         if(reflectionTest.EvaluateReflection(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON");
+            //HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints);
         }
     }
 
@@ -75,6 +76,8 @@ public class ShapeManager : MonoBehaviour
     public void SumbitTranslationQuestion(){
         if(translateShape.EvalutateTranslation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH TRANSLATION");
+            Vector2 translation = new Vector2(translateShape.GetTranslation().x, translateShape.GetTranslation().y);
+            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translation);
         }
     }
 

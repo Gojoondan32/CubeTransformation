@@ -9,8 +9,8 @@ public class PlayerSumbit : MonoBehaviour
     private float cooldown = 0.25f;
     private bool canSubmit = true;
     public void SubmitAnswer(){
-        if(!canSubmit) return; // Stop the player from spamming the button
-
+        if(!canSubmit || shapeManager == null) return; // Stop the player from spamming the button
+        return; //! Testing 
         StartCoroutine(Cooldown());
 
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;

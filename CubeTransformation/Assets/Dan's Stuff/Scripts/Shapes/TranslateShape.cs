@@ -51,6 +51,8 @@ public class TranslateShape : MonoBehaviour
         return true;
     }
 
+    public (int x, int y) GetTranslation() => (x, y);
+
     public bool EvalutateTranslation(List<Vector3> playerPoints, List<Vector3> shapePoints){
         List<Vector3> worldSpacePlayerPoints = new List<Vector3>();
         List<Vector3> worldSpaceShapePoints = new List<Vector3>();
