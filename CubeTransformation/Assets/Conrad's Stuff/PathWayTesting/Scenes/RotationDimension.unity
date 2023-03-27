@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 209106478}
   - component: {fileID: 209106477}
   m_Layer: 5
-  m_Name: Area1 Canvas
+  m_Name: Area3 Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2468,7 +2468,7 @@ GameObject:
   - component: {fileID: 1176628585}
   - component: {fileID: 1176628584}
   m_Layer: 5
-  m_Name: Area3 Canvas
+  m_Name: Area1 Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
