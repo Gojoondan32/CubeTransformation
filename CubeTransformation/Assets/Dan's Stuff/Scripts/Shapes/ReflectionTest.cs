@@ -9,6 +9,8 @@ public class ReflectionTest : MonoBehaviour
     [SerializeField] private float highestY;
     [SerializeField] private float lowestX;
     [SerializeField] private float lowestY;
+    private List<Vector3> reflectionPoints; // This is the reflection line points
+    public List<Vector3> ReflectionPoints { get => reflectionPoints; }
     
     private int randomValue; // This is the reflection line value
     private bool reflectInX; 
@@ -53,17 +55,17 @@ public class ReflectionTest : MonoBehaviour
         int randomValue = Random.Range(0, 2);
         if(randomValue == 0){
             reflectInX = true;
-            ShapeManager.GenerateLines(lineRenderer, GetXReflectionLine(xUpperBound, xLowerBound));
+            reflectionPoints = GetXReflectionLine(xUpperBound, xLowerBound);
+            ShapeManager.GenerateLines(lineRenderer, reflectionPoints);
         }
         else{
             reflectInX = false;
-            ShapeManager.GenerateLines(lineRenderer, GetYReflectionLine(yUpperBound, yLowerBound));
+            reflectionPoints = GetYReflectionLine(yUpperBound, yLowerBound);
+            ShapeManager.GenerateLines(lineRenderer, reflectionPoints);
         }
             
     }
-    private void FindLengthAndHeight(){
 
-    }
     private void GetHeighestAndLowest(List<Vector3> points){
         highestX = float.MinValue;
         highestY = float.MinValue;

@@ -40,6 +40,15 @@ public class ShapeManager : MonoBehaviour
         GenerateLines(lineRenderer, gridSpacePoints, true);
         MoveVisuals();
     }
+
+    #region Reflection
+
+    [ContextMenu("CreateReflectionQuestion")]
+    public void CreateReflectionQuestion(){
+        CreateShape();
+        MoveShape();
+        CreateReflectionTest();
+    }
     public void CreateReflectionTest(){
         if(gridSpacePoints.Count <= 0){
             Debug.LogError("Shape points is empty, Call CreateShape before this method");
@@ -48,54 +57,59 @@ public class ShapeManager : MonoBehaviour
         reflectionTest.CreateReflectionQuestion(gridSpacePoints);
     }
 
-    [ContextMenu("CreateReflectionQuestion")]
-    public void CreateReflectionQuestion(){
-        CreateShape();
-        MoveShape();
-        CreateReflectionTest();
-    }
-
     [ContextMenu("SumbitPlayerReflection")]
     public void SubmitPlayerReflection(){
         if(reflectionTest.EvaluateReflection(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON");
-            //HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints);
+            HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints);
         }
     }
+    #endregion
+
+    #region Translation
+
+    private (int x, int y) translation;
 
     [ContextMenu("Create Translation Question")]
     public void CreateTranslationQuestion(){
         reflectionTest.RemoveReflectionLines();
         CreateShape();
         MoveShape();
-        (int x, int y) = translateShape.CreateTranslationQuestion(gridSpacePoints);
-        textXandY.text = $"X: {x}, Y: {y}";
+        translation = translateShape.CreateTranslationQuestion(gridSpacePoints);
+        textXandY.text = $"X: {translation.x}, Y: {translation.y}";
     }
     
     [ContextMenu("Sumbit Player Translation")]
     public void SumbitTranslationQuestion(){
         if(translateShape.EvalutateTranslation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH TRANSLATION");
-            Vector2 translation = new Vector2(translateShape.GetTranslation().x, translateShape.GetTranslation().y);
-            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translation);
+            Vector2 translationVector = new Vector2(translation.x, translation.y);
+            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector);
         }
     }
+    #endregion
 
+    #region Rotation
+
+    (Vector2 rotationPoint, int rotationAmount) rotationQuestion;
     [ContextMenu("Create Rotation Question")]
     public void CreateRotationQuestion(){
         reflectionTest.RemoveReflectionLines(); // Testing
         CreateShape();
         MoveShape();
-        (Vector2 rotationPoint, int rotationAmount) = rotateShape.CreateRotationQuestion(gridSpacePoints);
-        textXandY.text = $"x: {rotationPoint.x} y: {rotationPoint.y} rotation: {rotationAmount}";
+        rotationQuestion = rotateShape.CreateRotationQuestion(gridSpacePoints);
+        textXandY.text = $"x: {rotationQuestion.rotationPoint.x} y: {rotationQuestion.rotationPoint.y} rotation: {rotationQuestion.rotationAmount}";
 
     }
     [ContextMenu("Sumbit Player Rotation")]
     public void SumbitRotationQuestion(){
         if(rotateShape.EvaluateRotation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH ROTATION");
+            HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint);
         }
     }
+
+    #endregion
 
     public void TestingInteractable(){
         Debug.Log("INTERACTABLE BUTTON IS WORKING");
