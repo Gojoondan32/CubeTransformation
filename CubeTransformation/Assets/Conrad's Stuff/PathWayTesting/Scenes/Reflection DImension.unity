@@ -4018,6 +4018,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aztec_Chair_2V7V2 Dimension Varient (FIXED))
       objectReference: {fileID: 0}
+    - target: {fileID: 2941449369080400893, guid: 82589771a4b699b47b1da9e2d7017181,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: efe556142b3d64741b69dc86bd448009, type: 2}
     - target: {fileID: 4039495711664033459, guid: 82589771a4b699b47b1da9e2d7017181,
         type: 3}
       propertyPath: shapeManager
