@@ -18,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     private float amountOfPlayerPoints;
     private List<Transform> playerPoints;
+    private IEnumerator currentCoroutine;
 
     private void Awake() {
         playerPoints = new List<Transform>();
@@ -85,7 +86,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else{
             // We have selected a point which does currently exists so we need to move it
-            StartCoroutine(MovePlayerPoint(playerPoint));
+            if(currentCoroutine == null) StartCoroutine(MovePlayerPoint(playerPoint));
         }
     }
 
@@ -106,10 +107,26 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     private IEnumerator MovePlayerPoint(Transform point){
+        // Need to stop if a point is already being moved 
+        currentCoroutine = MovePlayerPoint(point);
         while(pointSelected == true){
-            point.position = testObject.position;
+            if(!CheckIfPointExits(testObject)){
+                // There is no point at this position so we can move it to the new position
+                point.position = testObject.position;
+            }
+            
             yield return null;
         }
+        currentCoroutine = null;
+    }
+
+    private bool TryToMovePoint(Transform point){
+        foreach(Transform pos in playerPoints){
+            if(pos.position == point.position){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void PlayerUnselected(){
@@ -124,6 +141,14 @@ public class PlayerInteraction : MonoBehaviour
         return points;
     }
 
+    public void DestroyPlayerPoints(){
+        foreach(Transform point in playerPoints){
+            Destroy(point.gameObject);
+        }
+        playerPoints.Clear();
+        amountOfPlayerPoints = 0;
+    }
+
     private bool DoRaycast(){
         Vector3 dir = rayInteractor.End - playerHandRight.position;
         Debug.DrawRay(playerHandRight.position, dir, Color.blue, 1f);
@@ -131,6 +156,9 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Hit Object");
             SnapToGrid(hit.point);
             return true;
+        }
+        else{
+            testObject.position = new Vector3(0, 0, 0);
         }
         return false; // Stop the player from placing a point if they are not looking at the grid
     }

@@ -8,9 +8,10 @@ public class PlayerSumbit : MonoBehaviour
     [SerializeField] private ShapeManager shapeManager;
     private float cooldown = 0.25f;
     private bool canSubmit = true;
+    
     public void SubmitAnswer(){
         if(!canSubmit || shapeManager == null) return; // Stop the player from spamming the button
-        return; //! Testing 
+
         StartCoroutine(Cooldown());
 
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -28,6 +29,8 @@ public class PlayerSumbit : MonoBehaviour
                 shapeManager.SumbitRotationQuestion(); //! This is my demo scene for the reflection test 
                 break;
         }
+
+        QuestionManager.Instance.MoveGridToNextPosition();
     }
 
     private IEnumerator Cooldown(){

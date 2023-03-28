@@ -20,10 +20,13 @@ public class ShapeManager : MonoBehaviour
     [SerializeField] private PlayerInteraction playerInteraction;
 
     [SerializeField] private List<Vector3> testPlayerPoints;
+    private int correctAnswers = 0;
+
+
     private void Awake() {
         gridSpacePoints = new List<Vector3>();
         gridSpaceVisuals = new List<Transform>();
-
+        correctAnswers = 0;
         for(int i = 0; i < 4; i++){
             Transform temp = Instantiate(gridSpacePointVisualPrefab, new Vector3(0, -100f, 0), Quaternion.identity);
             gridSpaceVisuals.Add(temp);
@@ -61,6 +64,7 @@ public class ShapeManager : MonoBehaviour
     public void SubmitPlayerReflection(){
         if(reflectionTest.EvaluateReflection(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON");
+            correctAnswers++;
             HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints);
         }
     }
@@ -83,6 +87,7 @@ public class ShapeManager : MonoBehaviour
     public void SumbitTranslationQuestion(){
         if(translateShape.EvalutateTranslation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH TRANSLATION");
+            correctAnswers++;
             Vector2 translationVector = new Vector2(translation.x, translation.y);
             HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector);
         }
@@ -105,11 +110,17 @@ public class ShapeManager : MonoBehaviour
     public void SumbitRotationQuestion(){
         if(rotateShape.EvaluateRotation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH ROTATION");
+            correctAnswers++;
             HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint);
         }
     }
 
     #endregion
+
+    public bool CheckIfPlayerHasWon(){
+        if(correctAnswers >= 3) return true;
+        return false;
+    }
 
     public void TestingInteractable(){
         Debug.Log("INTERACTABLE BUTTON IS WORKING");

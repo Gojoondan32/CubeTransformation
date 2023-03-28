@@ -22,8 +22,13 @@ public class LevelGrid : MonoBehaviour
 
         gridSystem = new GridSystem(10, 10, 0.25f, marker);
         gridSystem.CreateDebugObjects(gridDebugObject);
-        marker.transform.position = new Vector3(0, 1f, 4.9f); //! Testing
+        //marker.transform.position = new Vector3(0, 1f, 4.9f); //! Testing for my scene
         
+    }
+
+    public void MoveGrid(Vector3 position){
+        Debug.Log("Moving Grid");
+        marker.transform.position = position;
     }
 
     private void CreatePath(){
