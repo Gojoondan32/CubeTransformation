@@ -44,10 +44,10 @@ public class LevelGrid : MonoBehaviour
     private TranslationData CreateTranslationData(){
         TranslationData translationData = new TranslationData();
         Vector3[] shapePoints = new Vector3[4]{
-            new Vector3(1, 2, 0),
-            new Vector3(1, 3, 0),
             new Vector3(2, 3, 0),
-            new Vector3(2, 2, 0)
+            new Vector3(2, 4, 0),
+            new Vector3(3, 4, 0),
+            new Vector3(3, 3, 0)
         };
         Vector3[] playerPoints = new Vector3[4]{
             new Vector3(3, 4, 0),
@@ -58,6 +58,7 @@ public class LevelGrid : MonoBehaviour
         translationData.shapePoints = shapePoints;
         translationData.playerPoints = playerPoints;
         translationData.translation = new Vector3(2, 2, 0);
+        translationData.isCorrect = false;
 
         return translationData;
     }
@@ -83,6 +84,7 @@ public class LevelGrid : MonoBehaviour
         reflectionData.shapePoints = shapePoints;
         reflectionData.playerPoints = playerPoints;
         reflectionData.reflectionPoints = reflectionPoints;
+        reflectionData.isCorrect = true;
 
         return reflectionData;
     }
@@ -104,6 +106,7 @@ public class LevelGrid : MonoBehaviour
         rotationData.shapePoints = shapePoints;
         rotationData.playerPoints = playerPoints;
         rotationData.rotationPoint = new Vector3(6, 6, 0);
+        rotationData.isCorrect = true;
 
         return rotationData;
     }

@@ -44,14 +44,13 @@ public class DisplayTransformationData : MonoBehaviour
     }
     private void DisplayTranslationData(TranslationData[] translationData){
         for (int i = 0; i < translationData.Length; i++){
-            DisplayShapeAndPlayerPoints(translationData[i].shapePoints, translationData[i].playerPoints);
-
+            DisplayShapeAndPlayerPoints(translationData[i].shapePoints, translationData[i].playerPoints, translationData[i].isCorrect);
             CreateGridImage(translationScrollableList);
         }
     }
     private void DisplayReflectionData(ReflectionData[] reflectionData){
         for (int i = 0; i < reflectionData.Length; i++){
-            DisplayShapeAndPlayerPoints(reflectionData[i].shapePoints, reflectionData[i].playerPoints);
+            DisplayShapeAndPlayerPoints(reflectionData[i].shapePoints, reflectionData[i].playerPoints, reflectionData[i].isCorrect);
             List<Vector3> reflectionPoints = ConvertPointsToGridSpace(reflectionData[i].reflectionPoints);
             GenerateLines(reflectionPoints, reflectionLineRenderer, false);
 
@@ -61,17 +60,18 @@ public class DisplayTransformationData : MonoBehaviour
     }
     private void DisplayRotationData(RotationData[] rotationData){
         for (int i = 0; i < rotationData.Length; i++){
-            DisplayShapeAndPlayerPoints(rotationData[i].shapePoints, rotationData[i].playerPoints);
+            DisplayShapeAndPlayerPoints(rotationData[i].shapePoints, rotationData[i].playerPoints, rotationData[i].isCorrect);
 
             CreateGridImage(rotationScrollableList);
         }
     }
 
-    private void DisplayShapeAndPlayerPoints(Vector3[] shapePoints, Vector3[] playerPoints){
+    private void DisplayShapeAndPlayerPoints(Vector3[] shapePoints, Vector3[] playerPoints, bool isCorrect){
         List<Vector3> shapePointsList = ConvertPointsToGridSpace(shapePoints);
         List<Vector3> playerPointsList = ConvertPointsToGridSpace(playerPoints);
 
         GenerateLines(shapePointsList, shapeLineRenderer, true);
+        SetLineColours(playerLineRenderer, isCorrect);
         GenerateLines(playerPointsList, playerLineRenderer, true);
     }
 
@@ -82,6 +82,12 @@ public class DisplayTransformationData : MonoBehaviour
         }
         return gridSpacePoints;
     }
+
+    private void SetLineColours(LineRenderer lineRenderer, bool isCorrect){
+        lineRenderer.startColor = isCorrect ? Color.green : Color.red;
+        lineRenderer.endColor = isCorrect ? Color.green : Color.red;
+    }
+
     private void GenerateLines(List<Vector3> points, LineRenderer lineRenderer, bool connectFirstToLast){
         if(connectFirstToLast) lineRenderer.positionCount = points.Count + 1;
         else lineRenderer.positionCount = points.Count;
