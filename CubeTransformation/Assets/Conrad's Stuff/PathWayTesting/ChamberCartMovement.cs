@@ -9,7 +9,7 @@ public class ChamberCartMovement : MonoBehaviour
     public GameObject ForwardButton;
     [SerializeField] PathCreator path;
     [SerializeField] GameObject Kart;
-    [SerializeField] float KartProgress = 0.01f;
+    [SerializeField] float KartProgress = 0.1f;
     [SerializeField] EndOfPathInstruction EndOfPathInstruction;
     public AnimationCurve curve;
     private void FixedUpdate()
