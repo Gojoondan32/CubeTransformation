@@ -21,28 +21,31 @@ public class HandleSerialisation : MonoBehaviour
 
     #region CreateData
 
-    public void CreateTranslationData(List<Vector3> playerPoints, List<Vector3> shapePoints, Vector3 translation){
+    public void CreateTranslationData(List<Vector3> playerPoints, List<Vector3> shapePoints, Vector3 translation, bool isCorrect){
         TranslationData translationData = new TranslationData();
         translationData.playerPoints = ConvertPointsToWorldSpace(playerPoints).ToArray();
         translationData.shapePoints = ConvertPointsToWorldSpace(shapePoints).ToArray();
         translationData.translation = translation;
+        translationData.isCorrect = isCorrect;
         translationDataList.Add(translationData);
         Debug.Log("Added translation data");
     }
 
-    public void CreateReflectionData(List<Vector3> playerPoints, List<Vector3> shapePoints, List<Vector3> reflectionPoints){
+    public void CreateReflectionData(List<Vector3> playerPoints, List<Vector3> shapePoints, List<Vector3> reflectionPoints, bool isCorrect){
         ReflectionData reflectionData = new ReflectionData();
         reflectionData.playerPoints = playerPoints.ToArray();
         reflectionData.shapePoints = shapePoints.ToArray();
         reflectionData.reflectionPoints = reflectionPoints.ToArray();
+        reflectionData.isCorrect = isCorrect;
         reflectionDataList.Add(reflectionData);
     }
 
-    public void CreateRotationData(List<Vector3> playerPoints, List<Vector3> shapePoints, Vector3 rotationPoint){
+    public void CreateRotationData(List<Vector3> playerPoints, List<Vector3> shapePoints, Vector3 rotationPoint, bool isCorrect){
         RotationData rotationData = new RotationData();
         rotationData.playerPoints = playerPoints.ToArray();
         rotationData.shapePoints = shapePoints.ToArray();
         rotationData.rotationPoint = rotationPoint;
+        rotationData.isCorrect = isCorrect;
         rotationDataList.Add(rotationData);
     }
 

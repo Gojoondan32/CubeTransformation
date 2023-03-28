@@ -24,6 +24,7 @@ public class QuestionManager : MonoBehaviour
     {
         if(shapeManager.CheckIfPlayerHasWon()){
             Debug.Log("Player has won");
+            // TODO: This is where we would load the next scene 
             return;
         }
         LevelGrid.Instance.MoveGrid(questionMarkers[CurrentPosition.CurrentChamber].position);
