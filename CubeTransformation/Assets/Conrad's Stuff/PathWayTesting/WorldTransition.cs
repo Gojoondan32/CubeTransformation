@@ -23,12 +23,8 @@ public class WorldTransition : MonoBehaviour
 
     IEnumerator LoadSceneAsync(int sceneID)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
-        while (!operation.isDone)
-        {
-            //float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
-            //LoadingBarFill.text = progressValue.ToString() + "%";
-            yield return null;
-        }
+        SceneManager.LoadScene(sceneID);
+        yield return null;
+        
     }
 }
