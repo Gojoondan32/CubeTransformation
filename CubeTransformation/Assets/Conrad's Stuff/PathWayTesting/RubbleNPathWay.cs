@@ -19,7 +19,7 @@ public class RubbleNPathWay : MonoBehaviour
         
             for (int x = 0; x < RubblePiles.Length;x++)
             {
-                if (LevelTimer.ChambersComplete[x] == false)
+                if (LevelTimer.ChambersComplete[x] != false)
                 {
                     RubblePiles[x].SetActive(true);
                     Buttons[x].GetComponent<Button>().interactable = false;
