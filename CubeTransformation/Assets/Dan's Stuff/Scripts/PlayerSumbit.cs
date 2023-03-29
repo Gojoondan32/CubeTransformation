@@ -20,17 +20,18 @@ public class PlayerSumbit : MonoBehaviour
                 shapeManager.SumbitTranslationQuestion();
                 break;
             case 2:
-                shapeManager.SubmitPlayerReflection();
-                break;
-            case 3:
                 shapeManager.SumbitRotationQuestion();
                 break;
+            case 3:
+                Debug.Log("Submitting Reflection Question");
+                shapeManager.SubmitPlayerReflection();
+                break;
             case 4:
-                shapeManager.SumbitRotationQuestion(); //! This is my demo scene for the reflection test 
+                //shapeManager.SumbitRotationQuestion(); //! This is my demo scene for the reflection test 
                 break;
         }
 
-        QuestionManager.Instance.MoveGridToNextPosition();
+        
     }
 
     private IEnumerator Cooldown(){

@@ -22,7 +22,7 @@ public class LevelGrid : MonoBehaviour
 
         gridSystem = new GridSystem(10, 10, 0.25f, marker);
         gridSystem.CreateDebugObjects(gridDebugObject);
-        //marker.transform.position = new Vector3(0, 1f, 4.9f); //! Testing for my scene
+        marker.transform.position = new Vector3(0, 2f, 4.9f); //! Testing for my scene
         
     }
 
