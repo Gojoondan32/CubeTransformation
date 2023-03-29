@@ -65,21 +65,26 @@ public class RotateShape : MonoBehaviour
             int randomValue = Random.Range(0, pointsAround.Count);
             rotationPoint = pointsAround[randomValue];
             rotationAmount = 0;
+            List<Vector3> tryRotatedPoints = new List<Vector3>();
+
 
             for(int i = 0; i < 3; i++){
                 rotationAmount++;
-                rotatedPoints = DoRotation(rotatedPoints, rotationPoint);
-                if(ArePointsOnTheGrid(rotatedPoints) == true) break;
+                tryRotatedPoints = DoRotation(rotatedPoints, rotationPoint);
+                if(ArePointsOnTheGrid(tryRotatedPoints) == true){
+                    rotatedPoints = tryRotatedPoints;
+                    break;
+                }
             }   
         }
 
-        /*
+        
         for (int i = 0; i < rotatedPoints.Count; i++){
             Vector3 pos = LevelGrid.Instance.gridSystem.TransposeWorldPositionToGridPosition(rotatedPoints[i]);
             pos.z = LevelGrid.Instance.Marker.position.z;
             Destroy(Instantiate(testobject, pos, Quaternion.identity), 60f);
         }
-        */
+        
         Debug.Log(rotationAmount);
         
         return (rotationPoint, rotationAmount * 90);
@@ -124,6 +129,10 @@ public class RotateShape : MonoBehaviour
         }
 
         for(int i = 0; i < rotatedPoints.Count; i++){
+            Debug.Log($"X: {rotatedPoints[0].x}, Y: {rotatedPoints[0].y}");
+            Debug.Log($"X: {rotatedPoints[1].x}, Y: {rotatedPoints[1].y}");
+            Debug.Log($"X: {rotatedPoints[2].x}, Y: {rotatedPoints[2].y}");
+            Debug.Log($"X: {rotatedPoints[3].x}, Y: {rotatedPoints[3].y}");
             for(int j = 0; j < worldSpacePlayerPoints.Count; j++){
                 if(Mathf.RoundToInt(rotatedPoints[i].x) == Mathf.RoundToInt(worldSpacePlayerPoints[j].x) && 
                     Mathf.RoundToInt(rotatedPoints[i].y) == Mathf.RoundToInt(worldSpacePlayerPoints[j].y)){
@@ -166,13 +175,13 @@ public class RotateShape : MonoBehaviour
         return rotationPoint;
     }
 
-    private Vector2 FindRotationPoint(List<Vector3> points){
+    private (Vector2, int) FindRotationPoint(List<Vector3> points){
         List<Vector3> rotatedPoints = new List<Vector3>();
         Vector2 rotationPoint; 
         do{
             Random.InitState(System.DateTime.Now.Millisecond); // Ensure randomness
-            int x = Random.Range(0, LevelGrid.Instance.gridSystem.GetWidth());
-            int y = Random.Range(0, LevelGrid.Instance.gridSystem.GetHeight());
+            int x = Random.Range(0, LevelGrid.Instance.gridSystem.GetWidth() - 1);
+            int y = Random.Range(0, LevelGrid.Instance.gridSystem.GetHeight() - 1);
             rotationPoint = new Vector2(x, y);
             rotatedPoints = DoRotation(points, rotationPoint);
         }
@@ -184,7 +193,8 @@ public class RotateShape : MonoBehaviour
             pos.z = LevelGrid.Instance.Marker.position.z;
             Instantiate(testobject, pos, Quaternion.identity);
         }
-        return rotationPoint;
+        rotationAmount = 1;
+        return (rotationPoint, rotationAmount * 90);
     }
     private List<Vector3> DoRotation(List<Vector3> points, Vector3 rotationPoint){
         List<Vector3> rotatedPoints = new List<Vector3>();
@@ -210,8 +220,10 @@ public class RotateShape : MonoBehaviour
             if(points[i].x > LevelGrid.Instance.gridSystem.GetWidth() - 1 || points[i].x < 0 || 
                 points[i].y > LevelGrid.Instance.gridSystem.GetHeight() - 1 || points[i].y < 0) return false;
         }
-        Debug.Log("Correct x: " + points[0].x);
-        Debug.Log("Correct y: " + points[0].y);
+        Debug.Log($"X: {points[0].x}, Y: {points[0].y}");
+        Debug.Log($"X: {points[1].x}, Y: {points[1].y}");
+        Debug.Log($"X: {points[2].x}, Y: {points[2].y}");
+        Debug.Log($"X: {points[3].x}, Y: {points[3].y}");
         arePointsOnTheGrid = true;
         return true;
     }

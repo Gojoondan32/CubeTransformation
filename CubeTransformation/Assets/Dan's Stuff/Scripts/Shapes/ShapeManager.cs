@@ -122,11 +122,12 @@ public class ShapeManager : MonoBehaviour
         if(rotateShape.EvaluateRotation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH ROTATION");
             correctAnswers++;
-            HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, true);
+            QuestionManager.Instance.MoveGridToNextPosition();
+            //HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, true);
         }
         else{
             // Upload the incorrect answer
-            HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, false);
+            //HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, false);
         }
     }
 

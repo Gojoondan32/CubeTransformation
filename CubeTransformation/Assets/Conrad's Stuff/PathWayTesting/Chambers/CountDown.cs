@@ -18,6 +18,7 @@ public class CountDown : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Debug.Log("Player Entered Chamber " + ThisChamber);
             CurrentPosition.CurrentChamber = ThisChamber;
             canCount = true;
         }

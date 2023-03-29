@@ -22,6 +22,7 @@ public class PlayerSumbit : MonoBehaviour
                 break;
             case 2:
                 shapeManager.SumbitRotationQuestion();
+                Debug.Log("Submitting Rotation Question");
                 break;
             case 3:
                 Debug.Log("Submitting Reflection Question");
