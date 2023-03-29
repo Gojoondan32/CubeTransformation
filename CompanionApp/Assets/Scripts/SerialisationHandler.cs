@@ -45,7 +45,7 @@ public class SerialisationHandler : MonoBehaviour
             string textToParse = webRequest.downloadHandler.text;
             TransformationData transformationData = JsonUtility.FromJson<TransformationData>(textToParse);
             Debug.Log("Got data");
-            Debug.Log(transformationData.translationData[0].shapePoints[0]);
+            //Debug.Log(transformationData.translationData[0].shapePoints[0]);
             //Debug.Log(transformationData.score);
             //Debug.Log(transformationData.time);
             displayTransformationData.PassInTransformationData(transformationData);

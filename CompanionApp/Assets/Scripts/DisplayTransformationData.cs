@@ -72,7 +72,7 @@ public class DisplayTransformationData : MonoBehaviour
 
         GenerateLines(shapePointsList, shapeLineRenderer, true);
         SetLineColours(playerLineRenderer, isCorrect);
-        GenerateLines(playerPointsList, playerLineRenderer, true);
+        if(playerPoints.Length > 0) GenerateLines(playerPointsList, playerLineRenderer, true);
     }
 
     private List<Vector3> ConvertPointsToGridSpace(Vector3[] points){

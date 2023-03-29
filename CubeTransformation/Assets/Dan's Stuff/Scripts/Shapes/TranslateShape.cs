@@ -69,7 +69,7 @@ public class TranslateShape : MonoBehaviour
             foreach(Vector3 shapePoint in worldSpaceShapePoints){
                 Debug.Log($"X: {shapePoint.x + x} Y: {shapePoint.y + y}");
 
-                if(Mathf.RoundToInt(playerPoint.x) == Mathf.RoundToInt(shapePoint.x) && Mathf.RoundToInt(playerPoint.y) == Mathf.RoundToInt(shapePoint.y)){
+                if(Mathf.RoundToInt(playerPoint.x) == Mathf.RoundToInt(shapePoint.x + x) && Mathf.RoundToInt(playerPoint.y) == Mathf.RoundToInt(shapePoint.y + y)){
                     correctPointsFound++;
                     break;
                 }

@@ -36,22 +36,24 @@ public class HandleSerialisation : MonoBehaviour
 
     public void CreateReflectionData(List<Vector3> playerPoints, List<Vector3> shapePoints, List<Vector3> reflectionPoints, bool isCorrect){
         ReflectionData reflectionData = new ReflectionData();
-        reflectionData.playerPoints = playerPoints.ToArray();
-        reflectionData.shapePoints = shapePoints.ToArray();
-        reflectionData.reflectionPoints = reflectionPoints.ToArray();
+        reflectionData.playerPoints = ConvertPointsToWorldSpace(playerPoints).ToArray();
+        reflectionData.shapePoints = ConvertPointsToWorldSpace(shapePoints).ToArray();
+        reflectionData.reflectionPoints = ConvertPointsToWorldSpace(reflectionPoints).ToArray();
         reflectionData.isCorrect = isCorrect;
         reflectionDataList.Add(reflectionData);
+        Debug.Log("Added reflection data");
     }
 
     public void CreateRotationData(List<Vector3> playerPoints, List<Vector3> shapePoints, Vector3 rotationPoint, bool isCorrect){
         RotationData rotationData = new RotationData();
-        rotationData.playerPoints = playerPoints.ToArray();
-        rotationData.shapePoints = shapePoints.ToArray();
+        rotationData.playerPoints = ConvertPointsToWorldSpace(playerPoints).ToArray();
+        rotationData.shapePoints = ConvertPointsToWorldSpace(shapePoints).ToArray();
         rotationData.rotationPoint = rotationPoint;
         rotationData.isCorrect = isCorrect;
         rotationDataList.Add(rotationData);
     }
 
+    [ContextMenu("Create Transformation Data")]
     public void CreateTransformationData(){
         TransformationData transformationData = new TransformationData();
         transformationData.translationData = translationDataList.ToArray();
@@ -73,7 +75,11 @@ public class HandleSerialisation : MonoBehaviour
     private List<Vector3> ConvertPointsToWorldSpace(List<Vector3> points){
         List<Vector3> worldSpacePoints = new List<Vector3>();
         for(int i = 0; i < points.Count; i++){
-            worldSpacePoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(points[i]));
+            Vector3 temp = LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(points[i]);
+            Vector3 temp2 = new Vector3(Mathf.RoundToInt(temp.x), Mathf.RoundToInt(temp.y), 0); // Test
+            worldSpacePoints.Add(temp2);
+            Debug.Log($"X = {temp2.x}, Y = {temp2.y}");
+            
         }
         return worldSpacePoints;
     }

@@ -42,6 +42,7 @@ public class ShapeManager : MonoBehaviour
         gridSpacePoints = translateShape.RandomlyMoveShape(gridSpacePoints);
         GenerateLines(lineRenderer, gridSpacePoints, true);
         MoveVisuals();
+        ConvertPoints();
     }
 
     #region Reflection
@@ -51,6 +52,7 @@ public class ShapeManager : MonoBehaviour
         CreateShape();
         MoveShape();
         CreateReflectionTest();
+        ConvertPoints();
     }
     public void CreateReflectionTest(){
         if(gridSpacePoints.Count <= 0){
@@ -62,15 +64,23 @@ public class ShapeManager : MonoBehaviour
 
     [ContextMenu("SumbitPlayerReflection")]
     public void SubmitPlayerReflection(){
+        if(reflectionTest.EvaluateReflection(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints)){
+            Debug.Log("PLAYER HAS WON");
+            HandleSerialisation.Instance.CreateReflectionData(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, true);
+        }
+
+
+
         if(reflectionTest.EvaluateReflection(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON");
             correctAnswers++;
-            HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, true);
+            
+            //HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, true);
             QuestionManager.Instance.MoveGridToNextPosition();
         }
         else{
             // Upload the incorrect answer
-            HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, false);
+            //HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, false);
         }
     }
     #endregion
@@ -84,23 +94,46 @@ public class ShapeManager : MonoBehaviour
         reflectionTest.RemoveReflectionLines();
         CreateShape();
         MoveShape();
-        translation = translateShape.CreateTranslationQuestion(gridSpacePoints);
+        //List<Vector3> passOverPoints = gridSpacePoints;  
+        translation = translateShape.CreateTranslationQuestion(CreateNewList());
         textXandY.text = $"X: {translation.x}, Y: {translation.y}";
+        ConvertPoints();
+    }
+
+    private List<Vector3> CreateNewList(){
+        List<Vector3> newList = new List<Vector3>();
+        foreach(Vector3 point in gridSpacePoints){
+            newList.Add(point);
+        }
+        return newList;
+    }
+
+    private void ConvertPoints(){
+        foreach(Vector3 point in gridSpacePoints){
+            Vector3 newPoint = LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point);
+            Debug.Log($"X: {newPoint.x} | Y: {newPoint.y}");
+        }
     }
     
     [ContextMenu("Sumbit Player Translation")]
     public void SumbitTranslationQuestion(){
+        if(translateShape.EvalutateTranslation(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints)){
+            Debug.Log("PLAYER HAS WON WITH TRANSLATION");
+
+            HandleSerialisation.Instance.CreateTranslationData(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints, new Vector2(translation.x, translation.y), true);
+        }
+
         if(translateShape.EvalutateTranslation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH TRANSLATION");
             correctAnswers++;
             QuestionManager.Instance.MoveGridToNextPosition();
             Vector2 translationVector = new Vector2(translation.x, translation.y);
-            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, true);
+            //HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, true);
         }
         else{
             // Upload the incorrect answer
             Vector2 translationVector = new Vector2(translation.x, translation.y);
-            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, false);
+            //HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, false);
         }
     }
     #endregion
@@ -113,21 +146,26 @@ public class ShapeManager : MonoBehaviour
         reflectionTest.RemoveReflectionLines(); // Testing
         CreateShape();
         MoveShape();
-        rotationQuestion = rotateShape.CreateRotationQuestion(gridSpacePoints);
+        rotationQuestion = rotateShape.CreateRotationQuestion(CreateNewList());
         textXandY.text = $"x: {rotationQuestion.rotationPoint.x} y: {rotationQuestion.rotationPoint.y} rotation: {rotationQuestion.rotationAmount}";
-
+        ConvertPoints();
     }
     [ContextMenu("Sumbit Player Rotation")]
     public void SumbitRotationQuestion(){
+        if(rotateShape.EvaluateRotation(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints)){
+            Debug.Log("PLAYER HAS WON WITH ROTATION");
+            HandleSerialisation.Instance.CreateRotationData(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, true);
+        }
+
         if(rotateShape.EvaluateRotation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH ROTATION");
             correctAnswers++;
             QuestionManager.Instance.MoveGridToNextPosition();
-            HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, true);
+            //HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, true);
         }
         else{
             // Upload the incorrect answer
-            HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, false);
+            //HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, false);
         }
     }
 
