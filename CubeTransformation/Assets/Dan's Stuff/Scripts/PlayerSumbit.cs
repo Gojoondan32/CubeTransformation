@@ -17,6 +17,7 @@ public class PlayerSumbit : MonoBehaviour
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         switch(sceneIndex){
             case 1:
+                Debug.Log("Submitting Translation Question");
                 shapeManager.SumbitTranslationQuestion();
                 break;
             case 2:

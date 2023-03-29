@@ -1161,14 +1161,14 @@ MonoBehaviour:
       - {x: 9.320964, y: 0, z: -34.905178}
       - {x: 11.490786, y: 0, z: -34.998764}
       - {x: 11.599014, y: 0, z: -35.003433}
-      - {x: 28.15521, y: 0, z: -35.174255}
-      - {x: 29.427237, y: 0, z: -35.10495}
-      - {x: 34.476807, y: 0, z: -34.829834}
-      - {x: 34.101498, y: 0, z: -38.492764}
-      - {x: 34.111324, y: 0, z: -38.534454}
-      - {x: 34.150703, y: 0, z: -38.701508}
-      - {x: 34.21777, y: 0, z: -44.604744}
-      - {x: 34.10391, y: 0, z: -44.833363}
+      - {x: 28.155302, y: 0, z: -35.17433}
+      - {x: 29.427282, y: 0, z: -35.104996}
+      - {x: 34.4769, y: 0, z: -34.829746}
+      - {x: 34.10159, y: 0, z: -38.492855}
+      - {x: 34.11137, y: 0, z: -38.5345}
+      - {x: 34.15063, y: 0, z: -38.701645}
+      - {x: 34.21786, y: 0, z: -44.604836}
+      - {x: 34.103954, y: 0, z: -44.83341}
       isClosed: 0
       space: 0
       controlMode: 0
@@ -4000,6 +4000,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbf64d17ed2e0648bda2aa72f159917, type: 3}
+--- !u!1 &2074546061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2074546062}
+  - component: {fileID: 2074546064}
+  - component: {fileID: 2074546063}
+  m_Layer: 0
+  m_Name: PlayerObject
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2074546062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074546061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2941449369370301033}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2074546063
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074546061}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2074546064
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074546061}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &2080595384
 PrefabInstance:
   m_ObjectHideFlags: 0
