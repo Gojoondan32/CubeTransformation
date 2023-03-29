@@ -953,6 +953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483999365}
   - component: {fileID: 483999364}
+  - component: {fileID: 483999366}
   m_Layer: 0
   m_Name: GameData
   m_TagString: Untagged
@@ -987,6 +988,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &483999366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483999363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7acc4a09523c944b91cf9da29f0a645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldTransition: {fileID: 2941449369370301032}
+  CurrentWorld: 3
+  TeleParticle: {fileID: 1165631966}
 --- !u!1 &531995759
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,6 +2132,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2faeea14a1ba7748a491890b566649a, type: 3}
+--- !u!1 &1165631966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1165631967}
+  m_Layer: 0
+  m_Name: TeleParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1165631967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165631966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2941449369370301033}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1167053964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4213,3 +4260,21 @@ PrefabInstance:
       objectReference: {fileID: 1504758783}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82589771a4b699b47b1da9e2d7017181, type: 3}
+--- !u!114 &2941449369370301032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2941449368959946220, guid: 82589771a4b699b47b1da9e2d7017181,
+    type: 3}
+  m_PrefabInstance: {fileID: 2941449369370301031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45743e2cd085a3d46a1250f37cab90bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2941449369370301033 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2941449368959946218, guid: 82589771a4b699b47b1da9e2d7017181,
+    type: 3}
+  m_PrefabInstance: {fileID: 2941449369370301031}
+  m_PrefabAsset: {fileID: 0}
