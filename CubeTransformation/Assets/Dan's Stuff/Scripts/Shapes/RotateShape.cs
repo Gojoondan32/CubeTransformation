@@ -125,12 +125,16 @@ public class RotateShape : MonoBehaviour
 
         for(int i = 0; i < rotatedPoints.Count; i++){
             for(int j = 0; j < worldSpacePlayerPoints.Count; j++){
+                if(Mathf.RoundToInt(rotatedPoints[i].x) == Mathf.RoundToInt(worldSpacePlayerPoints[j].x) && 
+                    Mathf.RoundToInt(rotatedPoints[i].y) == Mathf.RoundToInt(worldSpacePlayerPoints[j].y)){
+                        correctPointsFound++;
+                    }
                 if(rotatedPoints[i] == worldSpacePlayerPoints[j]){
-                    correctPointsFound++;
+                    //correctPointsFound++;
                 }
             }
         }
-        Debug.Log(correctPointsFound);
+        Debug.Log($"Correct points: {correctPointsFound}");
         return correctPointsFound == 4 ? true : false;
 
     }
