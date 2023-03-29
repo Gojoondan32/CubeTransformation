@@ -6,10 +6,14 @@ using OVR;
 
 public class CollapseControls : MonoBehaviour
 {
+    [SerializeField]
     GameObject CollapseObj;
+    [SerializeField]
     GameObject Explosion;
     private float RemainingTime;
     private TextMeshProUGUI TimeText;
+    [SerializeField]
+    Transform TargetPoint; 
     private void FixedUpdate()
     {
         //RemainingTime = TimeText.
@@ -24,26 +28,26 @@ public class CollapseControls : MonoBehaviour
                     switch (LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber])
                     {
                         case 100:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 30);
                             break;
                         case 70:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 40:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 10:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 0:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
                             break;
@@ -53,27 +57,27 @@ public class CollapseControls : MonoBehaviour
                     switch (LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber])
                     {
                         case 100:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 70:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 40:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 10:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 0:
-                            Instantiate(Explosion);
+                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 120);
                             StartCoroutine(StopVibration());
                             break;
@@ -83,28 +87,28 @@ public class CollapseControls : MonoBehaviour
                     switch (LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber])
                     {
                         case 100:
-                            Instantiate(CollapseObj);
+                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 30);
                             StartCoroutine(StopVibration());
 
                             break;
                         case 70:
-                            Instantiate(CollapseObj);
+                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 40:
-                            Instantiate(CollapseObj);
+                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 10:
-                            Instantiate(CollapseObj);
+                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 0:
-                            Instantiate(CollapseObj);
+                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 120);
                             StartCoroutine(StopVibration());
                             break;

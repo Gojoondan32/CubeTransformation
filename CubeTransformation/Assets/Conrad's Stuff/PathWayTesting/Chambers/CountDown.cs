@@ -26,17 +26,17 @@ public class CountDown : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             LevelTimer.LevelTimersTra[ThisChamber] -= Time.deltaTime;
-            CountDowntxt.text = LevelTimer.LevelTimersTra[ThisChamber].ToString();
+            CountDowntxt.text = (Mathf.Round(LevelTimer.LevelTimersTra[ThisChamber] * 100)/100).ToString();
         }
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             LevelTimer.LevelTimersRot[ThisChamber] -= Time.deltaTime;
-            CountDowntxt.text = LevelTimer.LevelTimersRot[ThisChamber].ToString();
+            CountDowntxt.text = (Mathf.Round(LevelTimer.LevelTimersRot[ThisChamber] * 100) / 100).ToString();
         }
         if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             LevelTimer.LevelTimersRef[ThisChamber] -= Time.deltaTime;
-            CountDowntxt.text = LevelTimer.LevelTimersRef[ThisChamber].ToString();
+            CountDowntxt.text = (Mathf.Round(LevelTimer.LevelTimersRef[ThisChamber] * 100) / 100).ToString();
         }
         
     }
