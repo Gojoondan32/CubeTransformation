@@ -123,6 +123,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &445101221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3356721398309196111, guid: 4392129285bf583448913bf2fe36fd20,
+    type: 3}
+  m_PrefabInstance: {fileID: 1069738870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &445101226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445101221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7e4c40a9fbed046adf55ea624dd48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeTillDestruction: 2
+  Target: {fileID: 1941546318}
 --- !u!1001 &1069738870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,7 +158,7 @@ PrefabInstance:
     - target: {fileID: 5518621312044961673, guid: 4392129285bf583448913bf2fe36fd20,
         type: 3}
       propertyPath: m_Name
-      value: Explosion(WIP)
+      value: Explosion
       objectReference: {fileID: 0}
     - target: {fileID: 8795309593637520916, guid: 4392129285bf583448913bf2fe36fd20,
         type: 3}
@@ -396,6 +416,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1655348446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 790519360884312620, guid: a2faeea14a1ba7748a491890b566649a,
+    type: 3}
+  m_PrefabInstance: {fileID: 790519361677621065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1655348451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655348446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7e4c40a9fbed046adf55ea624dd48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeTillDestruction: 4
+  Target: {fileID: 1655348446}
 --- !u!1 &1690551482
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +519,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1941546318 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5518621312044961673, guid: 4392129285bf583448913bf2fe36fd20,
+    type: 3}
+  m_PrefabInstance: {fileID: 1069738870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &790519361677621065
 PrefabInstance:
   m_ObjectHideFlags: 0
