@@ -10,11 +10,14 @@ public class QuestionManager : MonoBehaviour
     [SerializeField] private PlayerInteraction playerInteraction;
     [SerializeField] private ChamberUIBtn chamberUIBtn;
     [SerializeField] private Transform[] questionMarkers;
+    private int currentQuestion;
 
     public void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        currentQuestion = 0;
     }
 
     private void Start() {
@@ -31,10 +34,11 @@ public class QuestionManager : MonoBehaviour
             return;
         }
         //LevelGrid.Instance.MoveGrid(questionMarkers[2].position); //! Testing
-        LevelGrid.Instance.MoveGrid(questionMarkers[CurrentPosition.CurrentChamber].position);
+        LevelGrid.Instance.MoveGrid(questionMarkers[currentQuestion].position);
         playerInteraction.DestroyPlayerPoints(); // Allow the player to move the shape again
         CreateQuestion();
         chamberUIBtn.GetForwardButton().interactable = true; // Allow the player to move to the next question
+        if(currentQuestion < 3) currentQuestion++;
     }
 
     private void CreateQuestion(){

@@ -65,12 +65,12 @@ public class ShapeManager : MonoBehaviour
         if(reflectionTest.EvaluateReflection(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON");
             correctAnswers++;
-            //HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, true);
+            HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, true);
             QuestionManager.Instance.MoveGridToNextPosition();
         }
         else{
             // Upload the incorrect answer
-            //HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, false);
+            HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, false);
         }
     }
     #endregion
@@ -93,13 +93,14 @@ public class ShapeManager : MonoBehaviour
         if(translateShape.EvalutateTranslation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH TRANSLATION");
             correctAnswers++;
+            QuestionManager.Instance.MoveGridToNextPosition();
             Vector2 translationVector = new Vector2(translation.x, translation.y);
-            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, true);
+            //HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, true);
         }
         else{
             // Upload the incorrect answer
             Vector2 translationVector = new Vector2(translation.x, translation.y);
-            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, false);
+            //HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, false);
         }
     }
     #endregion
