@@ -30,6 +30,6 @@ public class ChamberCartMovement : MonoBehaviour
             KartProgress = Mathf.Lerp(StartValue, NewPosition, easing);
             yield return new WaitForSeconds(0.01f);
         }
-        ForwardButton.GetComponent<Button>().interactable = true;
+        //ForwardButton.GetComponent<Button>().interactable = true;
     }
 }

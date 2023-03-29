@@ -8,6 +8,7 @@ public class QuestionManager : MonoBehaviour
     public static QuestionManager Instance { get; private set; }
     [SerializeField] private ShapeManager shapeManager;
     [SerializeField] private PlayerInteraction playerInteraction;
+    [SerializeField] private ChamberUIBtn chamberUIBtn;
     [SerializeField] private Transform[] questionMarkers;
 
     public void Awake()
@@ -17,6 +18,7 @@ public class QuestionManager : MonoBehaviour
     }
 
     private void Start() {
+        chamberUIBtn.GetForwardButton().interactable = true; // Allow the player to move to the next question
         MoveGridToNextPosition();
     }
 
@@ -27,10 +29,11 @@ public class QuestionManager : MonoBehaviour
             // TODO: This is where we would load the next scene 
             return;
         }
-        LevelGrid.Instance.MoveGrid(questionMarkers[2].position); //! Testing
-        //LevelGrid.Instance.MoveGrid(questionMarkers[CurrentPosition.CurrentChamber].position);
+        //LevelGrid.Instance.MoveGrid(questionMarkers[2].position); //! Testing
+        LevelGrid.Instance.MoveGrid(questionMarkers[CurrentPosition.CurrentChamber].position);
         playerInteraction.DestroyPlayerPoints(); // Allow the player to move the shape again
         CreateQuestion();
+        chamberUIBtn.GetForwardButton().interactable = true; // Allow the player to move to the next question
     }
 
     private void CreateQuestion(){

@@ -29,4 +29,6 @@ public class ChamberUIBtn : MonoBehaviour
         }
         
     }
+
+    public Button GetForwardButton() => chamberCartMovement.ForwardButton.GetComponent<Button>();
 }
