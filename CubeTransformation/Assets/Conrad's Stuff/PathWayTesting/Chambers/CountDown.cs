@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class CountDown : MonoBehaviour
 {
-    [SerializeField] private int ThisChamber;
+    public int ThisChamber;
     [SerializeField] private TextMeshProUGUI CountDowntxt;
     private bool canCount = true;
 

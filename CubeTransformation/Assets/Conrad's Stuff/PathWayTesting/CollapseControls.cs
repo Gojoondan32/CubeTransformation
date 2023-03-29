@@ -10,8 +10,6 @@ public class CollapseControls : MonoBehaviour
     GameObject CollapseObj;
     [SerializeField]
     GameObject Explosion;
-    private float RemainingTime;
-    private TextMeshProUGUI TimeText;
     [SerializeField]
     Transform TargetPoint; 
     private void FixedUpdate()
@@ -19,7 +17,7 @@ public class CollapseControls : MonoBehaviour
         //RemainingTime = TimeText.
 
         // Check Player isn't in hub world
-        if (CurrentPosition.CurrentChamber != 0)
+        if (CurrentPosition.CurrentChamber == gameObject.GetComponent<CountDown>().ThisChamber)
         {
             // If CurrentRoom.TimeAmount is one of the following numbers 100, 70, 40 ,10 ,0 Then Activate Haptics and, Deadly Enviroments for those rooms
             switch (CurrentPosition.CurrentDimension)

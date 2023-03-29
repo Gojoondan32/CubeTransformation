@@ -36,9 +36,13 @@ public class PathUIBtn : MonoBehaviour
     {
         for(int x = 0; x < buttons.Length; x++)
         {
-            if (LevelTimer.ChambersComplete[x] != true)
+            if (LevelTimer.ChambersComplete[x] == false)
             {
                 buttons[x].interactable = true;
+            }
+            if (LevelTimer.ChambersComplete[x] == true)
+            {
+                buttons[x].interactable = false;
             }
         }
 
