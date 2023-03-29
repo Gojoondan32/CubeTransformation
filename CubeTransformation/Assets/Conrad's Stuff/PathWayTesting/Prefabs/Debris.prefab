@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 790519360884312622}
   - component: {fileID: 790519360884312623}
   - component: {fileID: 6654699686813186540}
+  - component: {fileID: 4040415786202784446}
   m_Layer: 0
   m_Name: Debris
   m_TagString: Untagged
@@ -4909,3 +4910,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4040415786202784446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790519360884312620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7e4c40a9fbed046adf55ea624dd48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeTillDestruction: 4
+  Target: {fileID: 790519360884312620}
