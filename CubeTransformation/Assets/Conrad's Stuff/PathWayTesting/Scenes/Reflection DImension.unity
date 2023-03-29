@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldTransition: {fileID: 2941449369370301032}
-  CurrentWorld: 3
+  CurrentWorld: 2
   TeleParticle: {fileID: 1165631966}
 --- !u!1 &531995759
 GameObject:
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shapeManager: {fileID: 1504758783}
   playerInteraction: {fileID: 854407219}
-  chamberUIBtn: {fileID: 0}
+  chamberUIBtn: {fileID: 1724103258}
   questionMarkers:
   - {fileID: 461898518}
   - {fileID: 531995760}
@@ -3420,6 +3420,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1df4d8d7585fcc14c99972d4474cbff4, type: 3}
+--- !u!114 &1724103258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2941449368894590092, guid: 82589771a4b699b47b1da9e2d7017181,
+    type: 3}
+  m_PrefabInstance: {fileID: 2941449369370301031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418a33632bcafe84495d816649786934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1740687909
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -23,7 +23,6 @@ public class ReflectionTest : MonoBehaviour
 
         //Convert the points coming in back into world space
         foreach(Vector3 point in points){
-            Debug.Log(point);
             //nonTransposedPoints.Add(new Vector3((point.x / cellSize) - parentPosition.x, (point.y / cellSize) - parentPosition.y));
             nonTransposedPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
         }
@@ -129,27 +128,41 @@ public class ReflectionTest : MonoBehaviour
         
         //Convert the points coming in back into world space
         foreach(Vector3 point in playerPoints){
-            worldSpacePlayerPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+            Vector3 worldSpacePoint = LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point);
+            worldSpacePlayerPoints.Add(worldSpacePoint);
+            //Debug.Log($"Player point: {point}");
+            //Debug.Log($"Player point X: {worldSpacePoint.x}, Player Point Y: {worldSpacePoint.y}");
         }
         foreach(Vector3 point in shapePoints){
-            worldSpaceShapePoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+            Vector3 worldSpacePoint = LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point);
+            worldSpaceShapePoints.Add(worldSpacePoint);
+            //Debug.Log($"Shape point: {point}");
+            //Debug.Log($"Shape point X: {worldSpacePoint.x}, Shape Point Y: {worldSpacePoint.y}");
         }
         
 
         foreach(Vector3 playerPoint in worldSpacePlayerPoints){
-            float distanceToReflectedShapeX = Mathf.Abs(randomValue - (playerPoint.x - randomValue));
-            float distanceToReflectedShapeY = Mathf.Abs(randomValue - (playerPoint.y - randomValue));
+            int distanceToReflectedShapeX = Mathf.RoundToInt(Mathf.Abs(randomValue - (playerPoint.x - randomValue)));
+            int distanceToReflectedShapeY = Mathf.RoundToInt(Mathf.Abs(randomValue - (playerPoint.y - randomValue)));
+            Debug.Log($"X: {distanceToReflectedShapeX}, Y: {playerPoint.y}" );
+
+            //Debug.Log($"Distance to reflected Y shape: {distanceToReflectedShapeY}");
             
             foreach(Vector3 shapePoint in worldSpaceShapePoints){
                 if(reflectInX){ // Y values should be the same
-                    if(shapePoint.x == distanceToReflectedShapeX && shapePoint.y == playerPoint.y){
+                    
+                    
+                    
+
+                    if(Mathf.RoundToInt(shapePoint.x) == distanceToReflectedShapeX && Mathf.RoundToInt(shapePoint.y) == Mathf.RoundToInt(playerPoint.y)){
                         // Found correct point
                         correctPointsFound++;
+                        Debug.Log($"Shape point X: {shapePoint.x}, Shape Point Y: {shapePoint.y}" );
                         break;
                     }
                 }
                 else{
-                    if (shapePoint.y == distanceToReflectedShapeY && shapePoint.x == playerPoint.x){
+                    if (Mathf.RoundToInt(shapePoint.y) == distanceToReflectedShapeY && Mathf.RoundToInt(shapePoint.x) == Mathf.RoundToInt(playerPoint.x)){
                         // Found correct point
                         correctPointsFound++;
                         break;
