@@ -34,10 +34,14 @@ public class PathUIBtn : MonoBehaviour
     }
     private void ReactivateButtons()
     {
-        foreach (Button buttons in buttons)
+        for(int x = 0; x < buttons.Length; x++)
         {
-            buttons.interactable = true;
+            if (LevelTimer.ChambersComplete[x] != true)
+            {
+                buttons[x].interactable = true;
+            }
         }
+
     }
 
     private void Awake()
