@@ -27,7 +27,8 @@ public class QuestionManager : MonoBehaviour
             // TODO: This is where we would load the next scene 
             return;
         }
-        LevelGrid.Instance.MoveGrid(questionMarkers[CurrentPosition.CurrentChamber].position);
+        LevelGrid.Instance.MoveGrid(questionMarkers[2].position); //! Testing
+        //LevelGrid.Instance.MoveGrid(questionMarkers[CurrentPosition.CurrentChamber].position);
         playerInteraction.DestroyPlayerPoints(); // Allow the player to move the shape again
         CreateQuestion();
     }
