@@ -11,10 +11,13 @@ public class HandleSerialisation : MonoBehaviour
     private List<TranslationData> translationDataList = new List<TranslationData>();
     private List<ReflectionData> reflectionDataList = new List<ReflectionData>();
     private List<RotationData> rotationDataList = new List<RotationData>(); 
+    private int roomsCompleted = 0;
 
     private void Awake() {
         if(Instance == null) Instance = this;
         else Destroy(this.gameObject);
+
+        roomsCompleted = 0;
 
         DontDestroyOnLoad(this.gameObject); // Keep this object alive between scenes (so we can keep the lists)
     }
@@ -58,6 +61,14 @@ public class HandleSerialisation : MonoBehaviour
     }
 
     #endregion
+
+    public void RoomComplete(){
+        roomsCompleted++;
+        if(roomsCompleted == 3){
+            CreateTransformationData();
+            roomsCompleted = 0;
+        }
+    }
 
     private List<Vector3> ConvertPointsToWorldSpace(List<Vector3> points){
         List<Vector3> worldSpacePoints = new List<Vector3>();

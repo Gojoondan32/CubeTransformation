@@ -27,6 +27,7 @@ public class LevelFinish : MonoBehaviour
         if (CurrentPosition.CurrentChamber == 3 && LevelTimer.ChambersComplete[CurrentWorld] == true)
         {
             CurrentPosition.CurrentChamber = 0;
+            HandleSerialisation.Instance.RoomComplete();
             StartCoroutine(Teleport());
             
         }
