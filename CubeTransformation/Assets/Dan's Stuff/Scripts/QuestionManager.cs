@@ -27,6 +27,7 @@ public class QuestionManager : MonoBehaviour
         if(shapeManager.CheckIfPlayerHasWon()){
             Debug.Log("Player has won");
             // TODO: This is where we would load the next scene 
+            LevelTimer.ChambersComplete[SceneManager.GetActiveScene().buildIndex - 1] = true; // Setting the current chamber to true
             return;
         }
         //LevelGrid.Instance.MoveGrid(questionMarkers[2].position); //! Testing

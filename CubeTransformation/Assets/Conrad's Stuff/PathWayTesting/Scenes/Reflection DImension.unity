@@ -466,6 +466,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThePlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 84a50bee0000f2a4aabb3bbfd6249e5e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84a50bee0000f2a4aabb3bbfd6249e5e, type: 3}
 --- !u!1 &189303777 stripped
@@ -1112,7 +1117,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &569793726
 MonoBehaviour:
@@ -1140,14 +1145,14 @@ MonoBehaviour:
       - {x: 9.320964, y: 0, z: -34.905178}
       - {x: 11.490786, y: 0, z: -34.998764}
       - {x: 11.599014, y: 0, z: -35.003433}
-      - {x: 28.155119, y: 0, z: -35.17418}
-      - {x: 29.42719, y: 0, z: -35.104904}
-      - {x: 34.476715, y: 0, z: -34.82991}
-      - {x: 34.101406, y: 0, z: -38.492672}
-      - {x: 34.11128, y: 0, z: -38.53441}
-      - {x: 34.150776, y: 0, z: -38.70137}
-      - {x: 34.217678, y: 0, z: -44.604652}
-      - {x: 34.103863, y: 0, z: -44.833317}
+      - {x: 28.15521, y: 0, z: -35.174255}
+      - {x: 29.427237, y: 0, z: -35.10495}
+      - {x: 34.476807, y: 0, z: -34.829834}
+      - {x: 34.101498, y: 0, z: -38.492764}
+      - {x: 34.111324, y: 0, z: -38.534454}
+      - {x: 34.150703, y: 0, z: -38.701508}
+      - {x: 34.21777, y: 0, z: -44.604744}
+      - {x: 34.10391, y: 0, z: -44.833363}
       isClosed: 0
       space: 0
       controlMode: 0
@@ -1278,6 +1283,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlenderCaveBottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2bc71e61430a8d541bc80fe94b093722,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bc71e61430a8d541bc80fe94b093722, type: 3}
@@ -1762,7 +1772,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &740416860
 MonoBehaviour:
@@ -1834,7 +1844,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &895386398
 MeshRenderer:
@@ -2188,6 +2198,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AztecPillar (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fbf64d17ed2e0648bda2aa72f159917,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbf64d17ed2e0648bda2aa72f159917, type: 3}
 --- !u!1001 &1192479330
@@ -2272,6 +2287,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AztecPillar (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fbf64d17ed2e0648bda2aa72f159917,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbf64d17ed2e0648bda2aa72f159917, type: 3}
 --- !u!1001 &1258923082
@@ -2355,6 +2375,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AztecPillar (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fbf64d17ed2e0648bda2aa72f159917,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbf64d17ed2e0648bda2aa72f159917, type: 3}
@@ -2539,6 +2564,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AztecTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 71f1fe9c19acfb1408dad0dc2198534b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71f1fe9c19acfb1408dad0dc2198534b, type: 3}
@@ -2909,6 +2939,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlenderCaveTop
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a0440ef262362ef4e8da785f5825dd11,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0440ef262362ef4e8da785f5825dd11, type: 3}
 --- !u!114 &1504758783 stripped
@@ -2939,7 +2974,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1506614384
 MonoBehaviour:
@@ -3074,6 +3109,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a9737e144e8918c4ca78741714d81af1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9737e144e8918c4ca78741714d81af1, type: 3}
@@ -3234,7 +3274,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1620886101
 Transform:
@@ -3425,6 +3465,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThePlatform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 84a50bee0000f2a4aabb3bbfd6249e5e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84a50bee0000f2a4aabb3bbfd6249e5e, type: 3}
 --- !u!1 &1740687910 stripped
@@ -3566,6 +3611,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AztecPillar
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fbf64d17ed2e0648bda2aa72f159917,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbf64d17ed2e0648bda2aa72f159917, type: 3}
 --- !u!1 &1860406279
@@ -3584,7 +3634,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1860406280
 MonoBehaviour:
@@ -3709,6 +3759,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AztecPillar (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fbf64d17ed2e0648bda2aa72f159917,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbf64d17ed2e0648bda2aa72f159917, type: 3}
@@ -3879,6 +3934,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AztecPillar (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fbf64d17ed2e0648bda2aa72f159917,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbf64d17ed2e0648bda2aa72f159917, type: 3}
 --- !u!1001 &2080595384
@@ -3962,6 +4022,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AztecPillar (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fbf64d17ed2e0648bda2aa72f159917,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbf64d17ed2e0648bda2aa72f159917, type: 3}
