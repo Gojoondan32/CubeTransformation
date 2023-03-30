@@ -31,7 +31,7 @@ public class CollapseControls : MonoBehaviour
             switch (CurrentPosition.CurrentDimension)
             {
                 case 1:
-                    switch (Mathf.RoundToInt(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber]))
+                    switch (Mathf.Round(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber]))
                     {
                         case 250:
                             Debug.Log("Institating 1");
@@ -67,10 +67,13 @@ public class CollapseControls : MonoBehaviour
                             StartCoroutine(StopVibration());
                             StartCoroutine(GameOver());
                             break;
+                        default:
+                            Debug.Log(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber]);
+                            break;
                     }
                     break;
                 case 2:
-                    switch (Mathf.RoundToInt(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber]))
+                    switch (Mathf.Round(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber]))
                     {
                         case 250:
                             Debug.Log("Institating 2");
@@ -107,10 +110,13 @@ public class CollapseControls : MonoBehaviour
                             StartCoroutine(StopVibration());
                             StartCoroutine(GameOver());
                             break;
+                        default:
+                            Debug.Log(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber]);
+                            break;
                     }
                     break;
                 case 3:
-                    switch (Mathf.RoundToInt((LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]))
+                    switch (Mathf.Round(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]))
                     {
                         case 250:
                             Debug.Log("Institating 3");
@@ -152,7 +158,7 @@ public class CollapseControls : MonoBehaviour
 
                     break;
                 default:
-                    Debug.Log(CurrentPosition.CurrentDimension);
+                    Debug.Log(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]);
                     break;
             }
 
