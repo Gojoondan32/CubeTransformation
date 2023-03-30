@@ -36,34 +36,34 @@ public class CollapseControls : MonoBehaviour
                         case 250:
                             Debug.Log("Institating 1");
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 30);
+                            OVRInput.SetControllerVibration(0, 30);
                             break;
                         case 200:
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 30);
+                            OVRInput.SetControllerVibration(0, 30);
                             break;
                         case 100:
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 30);
+                            OVRInput.SetControllerVibration(0, 30);
                             break;
                         case 70:
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 30);
+                            OVRInput.SetControllerVibration(0, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 40:
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 70);
+                            OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 10:
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 70);
+                            OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 0:
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 70);
+                            OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             StartCoroutine(GameOver());
                             break;
@@ -78,35 +78,35 @@ public class CollapseControls : MonoBehaviour
                         case 250:
                             Debug.Log("Institating 2");
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 30);
+                            OVRInput.SetControllerVibration(0, 30);
                             break;
                         case 200:
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 30);
+                            OVRInput.SetControllerVibration(0, 30);
                             break;
                         case 100:
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 30);
+                            OVRInput.SetControllerVibration(0, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 70:
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 30);
+                            OVRInput.SetControllerVibration(0, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 40:
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 70);
+                            OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 10:
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 70);
+                            OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 0:
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
-                            OVRInput.SetControllerVibration(70, 120);
+                            OVRInput.SetControllerVibration(0, 120);
                             StartCoroutine(StopVibration());
                             StartCoroutine(GameOver());
                             break;
@@ -158,7 +158,7 @@ public class CollapseControls : MonoBehaviour
 
                     break;
                 default:
-                    Debug.Log(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]);
+                    Debug.Log(Mathf.Round(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]));
                     break;
             }
 
