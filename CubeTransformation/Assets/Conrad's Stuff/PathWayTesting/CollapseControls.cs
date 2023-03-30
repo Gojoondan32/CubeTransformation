@@ -31,7 +31,7 @@ public class CollapseControls : MonoBehaviour
             switch (CurrentPosition.CurrentDimension)
             {
                 case 1:
-                    switch (LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber])
+                    switch (Mathf.RoundToInt(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber]))
                     {
                         case 250:
                             Debug.Log("Institating 1");
@@ -70,7 +70,7 @@ public class CollapseControls : MonoBehaviour
                     }
                     break;
                 case 2:
-                    switch (LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber])
+                    switch (Mathf.RoundToInt(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber]))
                     {
                         case 250:
                             Debug.Log("Institating 2");
@@ -110,7 +110,7 @@ public class CollapseControls : MonoBehaviour
                     }
                     break;
                 case 3:
-                    switch (LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber])
+                    switch (Mathf.RoundToInt((LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]))
                     {
                         case 250:
                             Debug.Log("Institating 3");
