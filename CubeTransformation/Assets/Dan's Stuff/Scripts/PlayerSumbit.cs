@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class PlayerSumbit : MonoBehaviour
 {
     [SerializeField] private ShapeManager shapeManager;
-    private float cooldown = 0.25f;
+    private float cooldown = 1f;
     private bool canSubmit = true;
     
-    public void SubmitAnswer(int playerPoints){
+    public void SubmitAnswer(){
         if(!canSubmit || shapeManager == null) return; // Stop the player from spamming the button
-        if(playerPoints <= 0) return; // Stop the player from submitting an empty answer
+
 
         StartCoroutine(Cooldown());
 

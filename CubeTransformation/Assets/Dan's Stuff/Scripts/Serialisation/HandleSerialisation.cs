@@ -26,12 +26,14 @@ public class HandleSerialisation : MonoBehaviour
 
     public void CreateTranslationData(List<Vector3> playerPoints, List<Vector3> shapePoints, Vector3 translation, bool isCorrect){
         TranslationData translationData = new TranslationData();
+        Debug.Log($"Player Points from translation: {playerPoints[0]}, {playerPoints[1]}, {playerPoints[2]}, {playerPoints[3]}");
         translationData.playerPoints = ConvertPointsToWorldSpace(playerPoints).ToArray();
         translationData.shapePoints = ConvertPointsToWorldSpace(shapePoints).ToArray();
         translationData.translation = translation;
         translationData.isCorrect = isCorrect;
         translationDataList.Add(translationData);
         Debug.Log("Added translation data");
+        Debug.Log($"Player Points after added from translation: {translationData.playerPoints[0]}, {translationData.playerPoints[1]}, {translationData.playerPoints[2]}, {translationData.playerPoints[3]}");
     }
 
     public void CreateReflectionData(List<Vector3> playerPoints, List<Vector3> shapePoints, List<Vector3> reflectionPoints, bool isCorrect){

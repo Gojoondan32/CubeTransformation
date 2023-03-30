@@ -59,15 +59,19 @@ public class TranslateShape : MonoBehaviour
         
         //Convert the points coming in back into world space
         foreach(Vector3 point in playerPoints){
-            worldSpacePlayerPoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+            Vector3 tempPoint = LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point);
+            worldSpacePlayerPoints.Add(tempPoint);
+            Debug.Log($"Player X: {tempPoint.x} Player Y: {tempPoint.y}");
         }
         foreach(Vector3 point in shapePoints){
-            worldSpaceShapePoints.Add(LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point));
+            Vector3 tempPoint = LevelGrid.Instance.gridSystem.TransposeGridPositionToWorldPosition(point);
+            worldSpaceShapePoints.Add(tempPoint);
+            Debug.Log($"Shape X: {tempPoint.x + x} Shape Y: {tempPoint.y + y}");
         }
 
         foreach(Vector3 playerPoint in worldSpacePlayerPoints){
             foreach(Vector3 shapePoint in worldSpaceShapePoints){
-                Debug.Log($"X: {shapePoint.x + x} Y: {shapePoint.y + y}");
+                
 
                 if(Mathf.RoundToInt(playerPoint.x) == Mathf.RoundToInt(shapePoint.x + x) && Mathf.RoundToInt(playerPoint.y) == Mathf.RoundToInt(shapePoint.y + y)){
                     correctPointsFound++;

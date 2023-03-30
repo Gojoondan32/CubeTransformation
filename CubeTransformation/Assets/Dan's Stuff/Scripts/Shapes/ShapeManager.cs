@@ -116,6 +116,14 @@ public class ShapeManager : MonoBehaviour
             Debug.Log($"X: {newPoint.x} | Y: {newPoint.y}");
         }
     }
+
+    private List<Vector3> GetPlayerPoints(){
+        List<Vector3> playerPoints = new List<Vector3>();
+        foreach(Vector3 point in playerInteraction.GetPlayerPoints()){
+            playerPoints.Add(point);
+        }
+        return playerPoints;
+    }
     
     [ContextMenu("Sumbit Player Translation")]
     public void SumbitTranslationQuestion(){
@@ -130,14 +138,15 @@ public class ShapeManager : MonoBehaviour
         if(translateShape.EvalutateTranslation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH TRANSLATION");
             correctAnswers++;
-            QuestionManager.Instance.MoveGridToNextPosition();
+            
             Vector2 translationVector = new Vector2(translation.x, translation.y);
-            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, true);
+            HandleSerialisation.Instance.CreateTranslationData(GetPlayerPoints(), gridSpacePoints, translationVector, true);
+            QuestionManager.Instance.MoveGridToNextPosition();
         }
         else{
             // Upload the incorrect answer
             Vector2 translationVector = new Vector2(translation.x, translation.y);
-            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, false);
+            HandleSerialisation.Instance.CreateTranslationData(GetPlayerPoints(), gridSpacePoints, translationVector, false);
         }
     }
     #endregion
@@ -166,8 +175,9 @@ public class ShapeManager : MonoBehaviour
         if(rotateShape.EvaluateRotation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH ROTATION");
             correctAnswers++;
-            QuestionManager.Instance.MoveGridToNextPosition();
+            
             HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, true);
+            QuestionManager.Instance.MoveGridToNextPosition();
         }
         else{
             // Upload the incorrect answer

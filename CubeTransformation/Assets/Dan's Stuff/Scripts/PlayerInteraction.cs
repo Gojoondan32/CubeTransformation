@@ -56,7 +56,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             // This should be used to try and sumbit the player's answer
             Debug.Log("Pressing the grip button Button");
-            playerSumbit.SubmitAnswer(playerPoints.Count);
+            if(playerPoints.Count > 0){
+                Debug.Log("SUMBITTING ANSWER");
+                playerSumbit.SubmitAnswer();
+            }
 
         }
         DoRaycast();
