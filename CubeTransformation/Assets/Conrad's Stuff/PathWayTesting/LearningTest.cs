@@ -7,6 +7,10 @@ public class LearningTest : MonoBehaviour
     [ContextMenu("RangeTest")]
     private void RangeTest()
     {
-        Debug.Log(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber]);
+        Debug.Log(LevelTimer.LevelTimersTra[0]);
+        Debug.Log(LevelTimer.LevelTimersTra[1]);
+        Debug.Log(LevelTimer.LevelTimersTra[2]);
+        Debug.Log(CurrentPosition.CurrentDimension);
+        Debug.Log(CurrentPosition.CurrentChamber);
     }
 }
