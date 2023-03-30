@@ -8,9 +8,9 @@ public class HandleSerialisation : MonoBehaviour
 {
     public static HandleSerialisation Instance;
     // Keep these as lists so we can add to them
-    private List<TranslationData> translationDataList = new List<TranslationData>();
-    private List<ReflectionData> reflectionDataList = new List<ReflectionData>();
-    private List<RotationData> rotationDataList = new List<RotationData>(); 
+    [SerializeField] private List<TranslationData> translationDataList = new List<TranslationData>();
+    [SerializeField] private List<ReflectionData> reflectionDataList = new List<ReflectionData>();
+    [SerializeField] private List<RotationData> rotationDataList = new List<RotationData>(); 
     private int roomsCompleted = 0;
 
     private void Awake() {
@@ -61,6 +61,12 @@ public class HandleSerialisation : MonoBehaviour
         transformationData.translationData = translationDataList.ToArray();
         transformationData.reflectionData = reflectionDataList.ToArray();
         transformationData.rotationData = rotationDataList.ToArray();
+
+        Debug.Log($"Length: transformationData.translationData.Length");
+        
+        Debug.Log($"Length: transformationData.reflectionData.Length");
+        Debug.Log($"Length: transformationData.rotationData.Length");
+
         UploadData(transformationData);
     }
 
@@ -69,9 +75,16 @@ public class HandleSerialisation : MonoBehaviour
     public void RoomComplete(){
         roomsCompleted++;
         if(roomsCompleted == 3){
-            CreateTransformationData();
+            StartCoroutine(WaitForScene());
+            //CreateTransformationData();
             roomsCompleted = 0;
         }
+    }
+
+    private IEnumerator WaitForScene(){
+        yield return new WaitForSeconds(10f);
+        Debug.Log("Starting Upload");
+        CreateTransformationData();
     }
 
     private List<Vector3> ConvertPointsToWorldSpace(List<Vector3> points){
