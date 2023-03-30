@@ -24,14 +24,14 @@ public class CollapseControls : MonoBehaviour
         {
             Debug.Log(CurrentPosition.CurrentChamber);
             Debug.Log(gameObject.GetComponent<CountDown>().ThisChamber - 1);
-            Debug.Log(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber - 1]);
-            Debug.Log(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber - 1]);
-            Debug.Log(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber - 1]);
+            Debug.Log(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber]);
+            Debug.Log(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber]);
+            Debug.Log(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]);
             // If CurrentRoom.TimeAmount is one of the following numbers 100, 70, 40 ,10 ,0 Then Activate Haptics and, Deadly Enviroments for those rooms
             switch (CurrentPosition.CurrentDimension)
             {
                 case 1:
-                    switch (LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber - 1])
+                    switch (LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber])
                     {
                         case 250:
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
@@ -69,7 +69,7 @@ public class CollapseControls : MonoBehaviour
                     }
                     break;
                 case 2:
-                    switch (LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber - 1])
+                    switch (LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber])
                     {
                         case 250:
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
@@ -108,7 +108,7 @@ public class CollapseControls : MonoBehaviour
                     }
                     break;
                 case 3:
-                    switch (LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber - 1])
+                    switch (LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber])
                     {
                         case 250:
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
