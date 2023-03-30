@@ -19,8 +19,14 @@ public class CollapseControls : MonoBehaviour
         //RemainingTime = TimeText.
 
         // Check Player isn't in hub world
+        
         if (CurrentPosition.CurrentChamber == gameObject.GetComponent<CountDown>().ThisChamber - 1)
         {
+            Debug.Log(CurrentPosition.CurrentChamber);
+            Debug.Log(gameObject.GetComponent<CountDown>().ThisChamber - 1);
+            Debug.Log(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber - 1]);
+            Debug.Log(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber - 1]);
+            Debug.Log(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber - 1]);
             // If CurrentRoom.TimeAmount is one of the following numbers 100, 70, 40 ,10 ,0 Then Activate Haptics and, Deadly Enviroments for those rooms
             switch (CurrentPosition.CurrentDimension)
             {
