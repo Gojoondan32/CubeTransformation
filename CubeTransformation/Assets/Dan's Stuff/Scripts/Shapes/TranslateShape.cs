@@ -77,11 +77,6 @@ public class TranslateShape : MonoBehaviour
                     correctPointsFound++;
                     break;
                 }
-
-                if(playerPoint == shapePoint){
-                    //correctPointsFound++;
-                    break;
-                }
             }
         }
         Debug.Log("Correct points found: " + correctPointsFound);

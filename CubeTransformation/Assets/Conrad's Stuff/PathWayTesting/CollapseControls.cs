@@ -14,6 +14,7 @@ public class CollapseControls : MonoBehaviour
     Transform TargetPoint;
     [SerializeField]
     WorldTransition worldTransition;
+    private IEnumerator coroutineRunning;
     private void FixedUpdate()
     {
         //RemainingTime = TimeText.
@@ -24,132 +25,182 @@ public class CollapseControls : MonoBehaviour
         {
             Debug.Log(CurrentPosition.CurrentChamber);
             Debug.Log(gameObject.GetComponent<CountDown>().ThisChamber - 1);
-            Debug.Log(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber]);
-            Debug.Log(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber]);
-            Debug.Log(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]);
+            //Debug.Log(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber - 1]);
+            //Debug.Log(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber - 1]);
+            //Debug.Log(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber - 1]);
             // If CurrentRoom.TimeAmount is one of the following numbers 100, 70, 40 ,10 ,0 Then Activate Haptics and, Deadly Enviroments for those rooms
             switch (CurrentPosition.CurrentDimension)
             {
                 case 1:
-                    switch (Mathf.Round(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber]))
+                    switch (Mathf.Round(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber - 1]))
                     {
-                        case 250:
+                        case 290:
                             Debug.Log("Institating 1");
-                            Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
+                            
                             OVRInput.SetControllerVibration(0, 30);
+                            StartCoroutine(StopVibration());
                             break;
                         case 200:
-                            Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 30);
+                            StartCoroutine(StopVibration());
                             break;
                         case 100:
-                            Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 30);
+                            StartCoroutine(StopVibration());
                             break;
                         case 70:
-                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 40:
-                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 10:
-                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 0:
-                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             StartCoroutine(GameOver());
                             break;
                         default:
-                            Debug.Log(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber]);
+                            //Debug.Log(LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber - 1]);
                             break;
                     }
                     break;
                 case 2:
-                    switch (Mathf.Round(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber]))
+                    switch (Mathf.Round(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber - 1]))
                     {
-                        case 250:
+                        case 290:
                             Debug.Log("Institating 2");
-                            Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 30);
+                            StartCoroutine(StopVibration());
                             break;
                         case 200:
-                            Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 30);
+                            StartCoroutine(StopVibration());
                             break;
                         case 100:
-                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 70:
-                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 40:
-                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 10:
-                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 0:
-                            Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(SpawnRock());
+                            }
                             OVRInput.SetControllerVibration(0, 120);
                             StartCoroutine(StopVibration());
                             StartCoroutine(GameOver());
                             break;
                         default:
-                            Debug.Log(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber]);
+                            Debug.Log(LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber - 1]);
                             break;
                     }
                     break;
                 case 3:
-                    switch (Mathf.Round(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]))
+                    switch (Mathf.Round(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber - 1]))
                     {
-                        case 250:
+                        case 290:
                             Debug.Log("Institating 3");
-                            Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(ChangeObject());
+                            }
                             OVRInput.SetControllerVibration(70, 30);
+                            StartCoroutine(StopVibration());
                             break;
                         case 200:
-                            Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(ChangeObject());
+                            }
                             OVRInput.SetControllerVibration(70, 30);
+                            StartCoroutine(StopVibration());
                             break;
                         case 100:
-                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(ChangeObject());
+                            }
                             OVRInput.SetControllerVibration(70, 30);
                             StartCoroutine(StopVibration());
 
                             break;
                         case 70:
-                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(ChangeObject());
+                            }
                             OVRInput.SetControllerVibration(70, 30);
                             StartCoroutine(StopVibration());
                             break;
                         case 40:
-                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(ChangeObject());
+                            }
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 10:
-                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(ChangeObject());
+                            }
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
                             break;
                         case 0:
-                            Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
+                            if(coroutineRunning == null){
+                                StartCoroutine(ChangeObject());
+                            }
                             OVRInput.SetControllerVibration(70, 120);
                             StartCoroutine(StopVibration());
                             StartCoroutine(GameOver());
@@ -158,7 +209,7 @@ public class CollapseControls : MonoBehaviour
 
                     break;
                 default:
-                    Debug.Log(Mathf.Round(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber]));
+                    Debug.Log(Mathf.Round(LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber - 1]));
                     break;
             }
 
@@ -166,6 +217,20 @@ public class CollapseControls : MonoBehaviour
         // Check Players
          
 
+    }
+
+    private IEnumerator SpawnRock(){
+        coroutineRunning = SpawnRock();
+        yield return new WaitForSeconds(1f);
+        Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
+        coroutineRunning = null;
+    }
+
+    private IEnumerator ChangeObject(){
+    coroutineRunning = ChangeObject();
+    yield return new WaitForSeconds(1f);
+    Instantiate(CollapseObj, TargetPoint.position,Quaternion.identity);
+    coroutineRunning = null;
     }
 
     IEnumerator StopVibration(float waitIme = 1f)
