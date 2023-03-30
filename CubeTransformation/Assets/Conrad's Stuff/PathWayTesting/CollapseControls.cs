@@ -19,7 +19,7 @@ public class CollapseControls : MonoBehaviour
         //RemainingTime = TimeText.
 
         // Check Player isn't in hub world
-        if (CurrentPosition.CurrentChamber == gameObject.GetComponent<CountDown>().ThisChamber)
+        if (CurrentPosition.CurrentChamber == gameObject.GetComponent<CountDown>().ThisChamber - 1)
         {
             // If CurrentRoom.TimeAmount is one of the following numbers 100, 70, 40 ,10 ,0 Then Activate Haptics and, Deadly Enviroments for those rooms
             switch (CurrentPosition.CurrentDimension)
@@ -141,6 +141,9 @@ public class CollapseControls : MonoBehaviour
                             break;
                     }
 
+                    break;
+                default:
+                    Debug.Log(CurrentPosition.CurrentDimension);
                     break;
             }
 
