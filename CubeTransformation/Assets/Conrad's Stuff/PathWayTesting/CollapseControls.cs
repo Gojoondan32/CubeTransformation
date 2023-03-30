@@ -34,6 +34,7 @@ public class CollapseControls : MonoBehaviour
                     switch (LevelTimer.LevelTimersTra[CurrentPosition.CurrentChamber])
                     {
                         case 250:
+                            Debug.Log("Institating 1");
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 30);
                             break;
@@ -72,6 +73,7 @@ public class CollapseControls : MonoBehaviour
                     switch (LevelTimer.LevelTimersRot[CurrentPosition.CurrentChamber])
                     {
                         case 250:
+                            Debug.Log("Institating 2");
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 30);
                             break;
@@ -111,6 +113,7 @@ public class CollapseControls : MonoBehaviour
                     switch (LevelTimer.LevelTimersRef[CurrentPosition.CurrentChamber])
                     {
                         case 250:
+                            Debug.Log("Institating 3");
                             Instantiate(Explosion, TargetPoint.position,Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 30);
                             break;
