@@ -78,12 +78,13 @@ public class RotateShape : MonoBehaviour
             }   
         }
 
-        
+        /*
         for (int i = 0; i < rotatedPoints.Count; i++){
             Vector3 pos = LevelGrid.Instance.gridSystem.TransposeWorldPositionToGridPosition(rotatedPoints[i]);
             pos.z = LevelGrid.Instance.Marker.position.z;
             Destroy(Instantiate(testobject, pos, Quaternion.identity), 60f);
         }
+        */
         
         Debug.Log(rotationAmount);
         

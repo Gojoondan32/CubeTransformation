@@ -9,8 +9,9 @@ public class PlayerSumbit : MonoBehaviour
     private float cooldown = 0.25f;
     private bool canSubmit = true;
     
-    public void SubmitAnswer(){
+    public void SubmitAnswer(int playerPoints){
         if(!canSubmit || shapeManager == null) return; // Stop the player from spamming the button
+        if(playerPoints <= 0) return; // Stop the player from submitting an empty answer
 
         StartCoroutine(Cooldown());
 

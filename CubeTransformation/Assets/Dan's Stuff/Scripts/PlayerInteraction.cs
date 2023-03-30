@@ -56,7 +56,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             // This should be used to try and sumbit the player's answer
             Debug.Log("Pressing the grip button Button");
-            playerSumbit.SubmitAnswer();
+            playerSumbit.SubmitAnswer(playerPoints.Count);
 
         }
         DoRaycast();
@@ -110,7 +110,7 @@ public class PlayerInteraction : MonoBehaviour
         // Need to stop if a point is already being moved 
         currentCoroutine = MovePlayerPoint(point);
         while(pointSelected == true){
-            if(!CheckIfPointExits(testObject)){
+            if(!CheckIfPointExits(testObject) && DoRaycast()){
                 // There is no point at this position so we can move it to the new position
                 point.position = testObject.position;
             }

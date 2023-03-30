@@ -64,10 +64,12 @@ public class ShapeManager : MonoBehaviour
 
     [ContextMenu("SumbitPlayerReflection")]
     public void SubmitPlayerReflection(){
+        /*
         if(reflectionTest.EvaluateReflection(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON");
             HandleSerialisation.Instance.CreateReflectionData(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, true);
         }
+        */
 
 
 
@@ -75,12 +77,12 @@ public class ShapeManager : MonoBehaviour
             Debug.Log("PLAYER HAS WON");
             correctAnswers++;
             
-            //HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, true);
+            HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, true);
             QuestionManager.Instance.MoveGridToNextPosition();
         }
         else{
             // Upload the incorrect answer
-            //HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, false);
+            HandleSerialisation.Instance.CreateReflectionData(playerInteraction.GetPlayerPoints(), gridSpacePoints, reflectionTest.ReflectionPoints, false);
         }
     }
     #endregion
@@ -117,23 +119,25 @@ public class ShapeManager : MonoBehaviour
     
     [ContextMenu("Sumbit Player Translation")]
     public void SumbitTranslationQuestion(){
+        /*
         if(translateShape.EvalutateTranslation(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH TRANSLATION");
 
             HandleSerialisation.Instance.CreateTranslationData(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints, new Vector2(translation.x, translation.y), true);
         }
+        */
 
         if(translateShape.EvalutateTranslation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH TRANSLATION");
             correctAnswers++;
             QuestionManager.Instance.MoveGridToNextPosition();
             Vector2 translationVector = new Vector2(translation.x, translation.y);
-            //HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, true);
+            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, true);
         }
         else{
             // Upload the incorrect answer
             Vector2 translationVector = new Vector2(translation.x, translation.y);
-            //HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, false);
+            HandleSerialisation.Instance.CreateTranslationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, translationVector, false);
         }
     }
     #endregion
@@ -152,20 +156,22 @@ public class ShapeManager : MonoBehaviour
     }
     [ContextMenu("Sumbit Player Rotation")]
     public void SumbitRotationQuestion(){
+        /*
         if(rotateShape.EvaluateRotation(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH ROTATION");
             HandleSerialisation.Instance.CreateRotationData(TestSerialisation.Instance.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, true);
         }
+        */
 
         if(rotateShape.EvaluateRotation(playerInteraction.GetPlayerPoints(), gridSpacePoints)){
             Debug.Log("PLAYER HAS WON WITH ROTATION");
             correctAnswers++;
             QuestionManager.Instance.MoveGridToNextPosition();
-            //HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, true);
+            HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, true);
         }
         else{
             // Upload the incorrect answer
-            //HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, false);
+            HandleSerialisation.Instance.CreateRotationData(playerInteraction.GetPlayerPoints(), gridSpacePoints, rotationQuestion.rotationPoint, false);
         }
     }
 
