@@ -1910,7 +1910,8 @@ MonoBehaviour:
     type: 3}
   Explosion: {fileID: 3283277796510915908, guid: 6aa4f8313975833498b33391b916346e,
     type: 3}
-  TargetPoint: {fileID: 0}
+  TargetPoint: {fileID: 1477852055}
+  worldTransition: {fileID: 2941449369370301032}
 --- !u!114 &854407219 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4039495711664033445, guid: 82589771a4b699b47b1da9e2d7017181,
@@ -3097,7 +3098,8 @@ MonoBehaviour:
     type: 3}
   Explosion: {fileID: 3283277796510915908, guid: 6aa4f8313975833498b33391b916346e,
     type: 3}
-  TargetPoint: {fileID: 0}
+  TargetPoint: {fileID: 314764937}
+  worldTransition: {fileID: 2941449369370301032}
 --- !u!1001 &1528063225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3714,7 +3716,8 @@ MonoBehaviour:
     type: 3}
   Explosion: {fileID: 3283277796510915908, guid: 6aa4f8313975833498b33391b916346e,
     type: 3}
-  TargetPoint: {fileID: 0}
+  TargetPoint: {fileID: 229897378}
+  worldTransition: {fileID: 2941449369370301032}
 --- !u!1001 &1899805670
 PrefabInstance:
   m_ObjectHideFlags: 0

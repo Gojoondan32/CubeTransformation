@@ -11,7 +11,9 @@ public class CollapseControls : MonoBehaviour
     [SerializeField]
     GameObject Explosion;
     [SerializeField]
-    Transform TargetPoint; 
+    Transform TargetPoint;
+    [SerializeField]
+    WorldTransition worldTransition;
     private void FixedUpdate()
     {
         //RemainingTime = TimeText.
@@ -48,6 +50,7 @@ public class CollapseControls : MonoBehaviour
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 70);
                             StartCoroutine(StopVibration());
+                            StartCoroutine(GameOver());
                             break;
                     }
                     break;
@@ -78,6 +81,7 @@ public class CollapseControls : MonoBehaviour
                             Instantiate(Explosion, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 120);
                             StartCoroutine(StopVibration());
+                            StartCoroutine(GameOver());
                             break;
                     }
                     break;
@@ -109,6 +113,7 @@ public class CollapseControls : MonoBehaviour
                             Instantiate(CollapseObj, TargetPoint.position, Quaternion.identity);
                             OVRInput.SetControllerVibration(70, 120);
                             StartCoroutine(StopVibration());
+                            StartCoroutine(GameOver());
                             break;
                     }
 
@@ -125,5 +130,10 @@ public class CollapseControls : MonoBehaviour
     {
         yield return new WaitForSeconds(waitIme);
         OVRInput.SetControllerVibration(0,0);
+    }
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        worldTransition.Loadscene(0);
     }
 }

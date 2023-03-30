@@ -723,7 +723,8 @@ MonoBehaviour:
     type: 3}
   Explosion: {fileID: 3283277796510915908, guid: 6aa4f8313975833498b33391b916346e,
     type: 3}
-  TargetPoint: {fileID: 0}
+  TargetPoint: {fileID: 1496505332}
+  worldTransition: {fileID: 1760217886}
 --- !u!1 &509385427
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +906,8 @@ MonoBehaviour:
     type: 3}
   Explosion: {fileID: 3283277796510915908, guid: 6aa4f8313975833498b33391b916346e,
     type: 3}
-  TargetPoint: {fileID: 0}
+  TargetPoint: {fileID: 1381506909}
+  worldTransition: {fileID: 1760217886}
 --- !u!1 &645795956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3262,7 +3264,8 @@ MonoBehaviour:
     type: 3}
   Explosion: {fileID: 3283277796510915908, guid: 6aa4f8313975833498b33391b916346e,
     type: 3}
-  TargetPoint: {fileID: 0}
+  TargetPoint: {fileID: 1783912388}
+  worldTransition: {fileID: 1760217886}
 --- !u!1 &2053169129
 GameObject:
   m_ObjectHideFlags: 0
